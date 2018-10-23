@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UtilizatoriCreateDlg" widgetVar="UtilizatoriCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUtilizatoriTitle}">
+            <h:form id="UtilizatoriCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{utilizatoriController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_idUtilizatori}" for="idUtilizatori" />
+                        <p:inputText id="idUtilizatori" value="#{utilizatoriController.selected.idUtilizatori}" title="#{bundle.CreateUtilizatoriTitle_idUtilizatori}" required="true" requiredMessage="#{bundle.CreateUtilizatoriRequiredMessage_idUtilizatori}"/>
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_utilizator}" for="utilizator" />
+                        <p:inputTextarea rows="4" cols="30" id="utilizator" value="#{utilizatoriController.selected.utilizator}" title="#{bundle.CreateUtilizatoriTitle_utilizator}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_parola}" for="parola" />
+                        <p:inputTextarea rows="4" cols="30" id="parola" value="#{utilizatoriController.selected.parola}" title="#{bundle.CreateUtilizatoriTitle_parola}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_nume}" for="nume" />
+                        <p:inputTextarea rows="4" cols="30" id="nume" value="#{utilizatoriController.selected.nume}" title="#{bundle.CreateUtilizatoriTitle_nume}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_prenume}" for="prenume" />
+                        <p:inputTextarea rows="4" cols="30" id="prenume" value="#{utilizatoriController.selected.prenume}" title="#{bundle.CreateUtilizatoriTitle_prenume}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_adresa}" for="adresa" />
+                        <p:inputTextarea rows="4" cols="30" id="adresa" value="#{utilizatoriController.selected.adresa}" title="#{bundle.CreateUtilizatoriTitle_adresa}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_email}" for="email" />
+                        <p:inputTextarea rows="4" cols="30" id="email" value="#{utilizatoriController.selected.email}" title="#{bundle.CreateUtilizatoriTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_telefon}" for="telefon" />
+                        <p:inputTextarea rows="4" cols="30" id="telefon" value="#{utilizatoriController.selected.telefon}" title="#{bundle.CreateUtilizatoriTitle_telefon}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{utilizatoriController.create}" value="#{bundle.Save}" update="display,:UtilizatoriListForm:datalist,:growl" oncomplete="handleSubmit(args,'UtilizatoriCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UtilizatoriCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

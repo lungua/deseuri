@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="UtilizatoriCreateDlg1" widgetVar="UserCreareDialog" modal="true" resizable="false" appendTo="@(body)" header="Creare Utilizator nou">
+      
+
+        
+            
+
+                <h:form id="UtilizatoriCreateForm"  >
+                    <h:panelGroup id="display" >
+                        <p:panelGrid columns="2"   >
+                            <p:outputLabel value=""  />
+                            <p:outputLabel value=""  />
+                            <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_utilizator}" for="utilizator" />
+                            <p:inputText   id="utilizator" value="#{utilizatoriController.selectedCreate.utilizator}" title="#{bundle.CreateUtilizatoriTitle_utilizator}" />
+
+                            <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_parola}" for="parola1" />
+                            <p:password  required="true"  id="parola1" match="parola2" 
+                                         value="#{utilizatoriController.selectedCreate.parola}" 
+                                         title="#{bundle.CreateUtilizatoriTitle_parola}" feedback="false" />
+
+                            <p:outputLabel value="ConfirmaParola" for="parola2" />
+                            <p:password  required="true"  id="parola2" value="#{utilizatoriController.parola2}" title="#{bundle.CreateUtilizatoriTitle_parola}" 
+                                         feedback="false" 
+
+                                         validatorMessage="Parola invalida..">
+
+                            </p:password>
+
+
+
+
+                            <p:outputLabel  value="#{bundle.CreateUtilizatoriLabel_nume}" for="nume" />
+                            <p:inputText  style="width: 150px" id="nume" value="#{utilizatoriController.selectedCreate.nume}" title="#{bundle.CreateUtilizatoriTitle_nume}" />
+                            <p:outputLabel  value="#{bundle.CreateUtilizatoriLabel_prenume}" for="prenume" />
+                            <p:inputText  style="width: 150px" id="prenume" value="#{utilizatoriController.selectedCreate.prenume}" title="#{bundle.CreateUtilizatoriTitle_prenume}" />
+                            <p:outputLabel  value="#{bundle.CreateUtilizatoriLabel_adresa}" for="adresa" />
+                            <p:inputText  style="width: 250px" id="adresa" value="#{utilizatoriController.selectedCreate.adresa}" title="#{bundle.CreateUtilizatoriTitle_adresa}" />
+                            <p:outputLabel  value="#{bundle.CreateUtilizatoriLabel_email}" for="email" />
+                            <p:inputText required="true"
+                                         requiredMessage="Introduceti adresa email ."
+                                         validatorMessage="Format email invalid"
+                                           id="email" 
+                                         value="#{utilizatoriController.selectedCreate.email}" title="#{bundle.CreateUtilizatoriTitle_email}"
+                                         style="width: 250px">
+
+
+
+                                <f:validateRegex
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+                            </p:inputText>
+
+
+
+                            <p:outputLabel value="#{bundle.CreateUtilizatoriLabel_telefon}" for="telefon" />
+                            <p:inputText    id="telefon" value="#{utilizatoriController.selectedCreate.telefon}" title="#{bundle.CreateUtilizatoriTitle_telefon}" />
+                            
+                            
+                        </p:panelGrid>
+                        <p:commandButton actionListener="#{utilizatoriController.createUser}" value="#{bundle.Save}" update="display" onclick="UserCreareDialog.hide()"/>
+                        <p:commandButton value="#{bundle.Cancel}" onclick="UserCreareDialog.hide()"/>
+                    </h:panelGroup>
+                </h:form>
+            
+    </p:dialog> 
+</html>

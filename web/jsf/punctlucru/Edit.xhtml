@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PunctlucruEditDlg" widgetVar="PunctlucruEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPunctlucruTitle}">
+            <h:form id="PunctlucruEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{punctlucruController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPunctlucruLabel_idPunctLucru}" for="idPunctLucru" />
+                        <p:inputText id="idPunctLucru" value="#{punctlucruController.selected.idPunctLucru}" title="#{bundle.EditPunctlucruTitle_idPunctLucru}" required="true" requiredMessage="#{bundle.EditPunctlucruRequiredMessage_idPunctLucru}"/>
+                        <p:outputLabel value="#{bundle.EditPunctlucruLabel_numePunct}" for="numePunct" />
+                        <p:inputTextarea rows="4" cols="30" id="numePunct" value="#{punctlucruController.selected.numePunct}" title="#{bundle.EditPunctlucruTitle_numePunct}" />
+                        <p:outputLabel value="#{bundle.EditPunctlucruLabel_telefon}" for="telefon" />
+                        <p:inputTextarea rows="4" cols="30" id="telefon" value="#{punctlucruController.selected.telefon}" title="#{bundle.EditPunctlucruTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.EditPunctlucruLabel_societateidSocietate}" for="societateidSocietate" />
+                        <p:selectOneMenu id="societateidSocietate" value="#{punctlucruController.selected.societateidSocietate}" required="true" requiredMessage="#{bundle.EditPunctlucruRequiredMessage_societateidSocietate}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{societateController.itemsAvailableSelectOne}"
+                                           var="societateidSocietateItem"
+                                           itemValue="#{societateidSocietateItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{punctlucruController.update}" value="#{bundle.Save}" update="display,:PunctlucruListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PunctlucruEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PunctlucruEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

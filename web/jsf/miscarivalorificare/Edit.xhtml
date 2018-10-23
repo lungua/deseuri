@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarivalorificareEditDlg" widgetVar="MiscarivalorificareEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMiscarivalorificareTitle}">
+            <h:form id="MiscarivalorificareEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarivalorificareController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_idMiscariValorificare}" for="idMiscariValorificare" />
+                        <p:inputText id="idMiscariValorificare" value="#{miscarivalorificareController.selected.idMiscariValorificare}" title="#{bundle.EditMiscarivalorificareTitle_idMiscariValorificare}" required="true" requiredMessage="#{bundle.EditMiscarivalorificareRequiredMessage_idMiscariValorificare}"/>
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{miscarivalorificareController.selected.cantitate}" title="#{bundle.EditMiscarivalorificareTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_adentEc}" for="adentEc" />
+                        <p:inputTextarea rows="4" cols="30" id="adentEc" value="#{miscarivalorificareController.selected.adentEc}" title="#{bundle.EditMiscarivalorificareTitle_adentEc}" />
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscarivalorificareController.selected.tipDoc}" title="#{bundle.EditMiscarivalorificareTitle_tipDoc}" />
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="MM/dd/yyyy" value="#{miscarivalorificareController.selected.dataDoc}" title="#{bundle.EditMiscarivalorificareTitle_dataDoc}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_miscariLunaidMiscariLuna}" for="miscariLunaidMiscariLuna" />
+                        <p:selectOneMenu id="miscariLunaidMiscariLuna" value="#{miscarivalorificareController.selected.miscariLunaidMiscariLuna}" required="true" requiredMessage="#{bundle.EditMiscarivalorificareRequiredMessage_miscariLunaidMiscariLuna}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{miscarilunaController.itemsAvailableSelectOne}"
+                                           var="miscariLunaidMiscariLunaItem"
+                                           itemValue="#{miscariLunaidMiscariLunaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMiscarivalorificareLabel_anexa2BidAnexa2B}" for="anexa2BidAnexa2B" />
+                        <p:selectOneMenu id="anexa2BidAnexa2B" value="#{miscarivalorificareController.selected.anexa2BidAnexa2B}" required="true" requiredMessage="#{bundle.EditMiscarivalorificareRequiredMessage_anexa2BidAnexa2B}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{anexa2bController.itemsAvailableSelectOne}"
+                                           var="anexa2BidAnexa2BItem"
+                                           itemValue="#{anexa2BidAnexa2BItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarivalorificareController.update}" value="#{bundle.Save}" update="display,:MiscarivalorificareListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MiscarivalorificareEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarivalorificareEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

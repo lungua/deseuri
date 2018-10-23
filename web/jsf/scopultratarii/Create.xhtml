@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ScopultratariiCreateDlg" widgetVar="ScopultratariiCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateScopultratariiTitle}">
+            <h:form id="ScopultratariiCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{scopultratariiController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateScopultratariiLabel_idScopulTratarii}" for="idScopulTratarii" />
+                        <p:inputText id="idScopulTratarii" value="#{scopultratariiController.selected.idScopulTratarii}" title="#{bundle.CreateScopultratariiTitle_idScopulTratarii}" required="true" requiredMessage="#{bundle.CreateScopultratariiRequiredMessage_idScopulTratarii}"/>
+                        <p:outputLabel value="#{bundle.CreateScopultratariiLabel_cod}" for="cod" />
+                        <p:inputTextarea rows="4" cols="30" id="cod" value="#{scopultratariiController.selected.cod}" title="#{bundle.CreateScopultratariiTitle_cod}" />
+                        <p:outputLabel value="#{bundle.CreateScopultratariiLabel_denumire}" for="denumire" />
+                        <p:inputTextarea rows="4" cols="30" id="denumire" value="#{scopultratariiController.selected.denumire}" title="#{bundle.CreateScopultratariiTitle_denumire}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{scopultratariiController.create}" value="#{bundle.Save}" update="display,:ScopultratariiListForm:datalist,:growl" oncomplete="handleSubmit(args,'ScopultratariiCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ScopultratariiCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

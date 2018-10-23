@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClasificaredinViewDlg" widgetVar="ClasificaredinViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewClasificaredinTitle}">
+            <h:form id="ClasificaredinViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clasificaredinController.selected != null}">
+                        <h:outputText value="#{bundle.ViewClasificaredinLabel_idClasificareDin}"/>
+                        <h:outputText value="#{clasificaredinController.selected.idClasificareDin}" title="#{bundle.ViewClasificaredinTitle_idClasificareDin}"/>
+                        <h:outputText value="#{bundle.ViewClasificaredinLabel_codClasificare}"/>
+                        <h:outputText value="#{clasificaredinController.selected.codClasificare}" title="#{bundle.ViewClasificaredinTitle_codClasificare}"/>
+                        <h:outputText value="#{bundle.ViewClasificaredinLabel_denumireClasificare}"/>
+                        <h:outputText value="#{clasificaredinController.selected.denumireClasificare}" title="#{bundle.ViewClasificaredinTitle_denumireClasificare}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ClasificaredinViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

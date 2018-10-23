@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantcomercializataViewDlg" widgetVar="CantcomercializataViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCantcomercializataTitle}">
+            <h:form id="CantcomercializataViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantcomercializataController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_idCantComercializata}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.idCantComercializata}" title="#{bundle.ViewCantcomercializataTitle_idCantComercializata}"/>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_cantitate}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.cantitate}" title="#{bundle.ViewCantcomercializataTitle_cantitate}"/>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_document}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.document}" title="#{bundle.ViewCantcomercializataTitle_document}"/>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_dataDocument}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.dataDocument}" title="#{bundle.ViewCantcomercializataTitle_dataDocument}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_observatii}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.observatii}" title="#{bundle.ViewCantcomercializataTitle_observatii}"/>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_agentEc}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.agentEc}" title="#{bundle.ViewCantcomercializataTitle_agentEc}"/>
+                        <h:outputText value="#{bundle.ViewCantcomercializataLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{cantcomercializataController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewCantcomercializataTitle_miscariLunaidMiscariLuna}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CantcomercializataViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

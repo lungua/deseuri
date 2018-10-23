@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="deseuriWebPU" transaction-type="JTA">
+    <jta-data-source>java:app/deseuri</jta-data-source>
+    <class>ent.Anexa2b</class>
+    <class>ent.Anul</class>
+    <class>ent.Cantcomercializata</class>
+    <class>ent.Canteliminare</class>
+    <class>ent.Cantreciclata</class>
+    <class>ent.Cantrezultata</class>
+    <class>ent.Cantvalorificata</class>
+    <class>ent.Categoriideseuri</class>
+    <class>ent.Clasificaredin</class>
+    <class>ent.Coddeseu</class>
+    <class>ent.Deseuripunctlucru</class>
+    <class>ent.Destinatia</class>
+    <class>ent.Luna</class>
+    <class>ent.Mijloctransport</class>
+    <class>ent.Miscarieliminare</class>
+    <class>ent.Miscarigenerare</class>
+    <class>ent.Miscariluna</class>
+    <class>ent.Miscaristocare</class>
+    <class>ent.Miscarivalorificare</class>
+    <class>ent.Modtratare</class>
+    <class>ent.Operatia2a</class>
+    <class>ent.Punctlucru</class>
+    <class>ent.Scopultratarii</class>
+    <class>ent.Societate</class>
+    <class>ent.Subcategoriideseuri</class>
+    <class>ent.Tipstocare</class>
+    <class>ent.Um</class>
+    <class>ent.Utilizatori</class>
+    <class>ent.Utilizatorisocietate</class>
+    <class>ent.Vsu</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>

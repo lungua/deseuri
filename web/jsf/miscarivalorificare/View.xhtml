@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarivalorificareViewDlg" widgetVar="MiscarivalorificareViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMiscarivalorificareTitle}">
+            <h:form id="MiscarivalorificareViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarivalorificareController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_idMiscariValorificare}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.idMiscariValorificare}" title="#{bundle.ViewMiscarivalorificareTitle_idMiscariValorificare}"/>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_cantitate}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.cantitate}" title="#{bundle.ViewMiscarivalorificareTitle_cantitate}"/>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_adentEc}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.adentEc}" title="#{bundle.ViewMiscarivalorificareTitle_adentEc}"/>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_tipDoc}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.tipDoc}" title="#{bundle.ViewMiscarivalorificareTitle_tipDoc}"/>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_dataDoc}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.dataDoc}" title="#{bundle.ViewMiscarivalorificareTitle_dataDoc}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewMiscarivalorificareTitle_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{bundle.ViewMiscarivalorificareLabel_anexa2BidAnexa2B}"/>
+                        <h:outputText value="#{miscarivalorificareController.selected.anexa2BidAnexa2B}" title="#{bundle.ViewMiscarivalorificareTitle_anexa2BidAnexa2B}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MiscarivalorificareViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

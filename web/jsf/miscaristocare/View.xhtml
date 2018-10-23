@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscaristocareViewDlg" widgetVar="MiscaristocareViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMiscaristocareTitle}">
+            <h:form id="MiscaristocareViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscaristocareController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_idMiscariStocare}"/>
+                        <h:outputText value="#{miscaristocareController.selected.idMiscariStocare}" title="#{bundle.ViewMiscaristocareTitle_idMiscariStocare}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_cantitate}"/>
+                        <h:outputText value="#{miscaristocareController.selected.cantitate}" title="#{bundle.ViewMiscaristocareTitle_cantitate}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_tipDoc}"/>
+                        <h:outputText value="#{miscaristocareController.selected.tipDoc}" title="#{bundle.ViewMiscaristocareTitle_tipDoc}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_dataDoc}"/>
+                        <h:outputText value="#{miscaristocareController.selected.dataDoc}" title="#{bundle.ViewMiscaristocareTitle_dataDoc}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{miscaristocareController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewMiscaristocareTitle_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_destinatiaidDestinatia}"/>
+                        <h:outputText value="#{miscaristocareController.selected.destinatiaidDestinatia}" title="#{bundle.ViewMiscaristocareTitle_destinatiaidDestinatia}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_mijlocTransportidMijlocTransport}"/>
+                        <h:outputText value="#{miscaristocareController.selected.mijlocTransportidMijlocTransport}" title="#{bundle.ViewMiscaristocareTitle_mijlocTransportidMijlocTransport}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_scopulTratariiidScopulTratarii}"/>
+                        <h:outputText value="#{miscaristocareController.selected.scopulTratariiidScopulTratarii}" title="#{bundle.ViewMiscaristocareTitle_scopulTratariiidScopulTratarii}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_modTratareidModTratare}"/>
+                        <h:outputText value="#{miscaristocareController.selected.modTratareidModTratare}" title="#{bundle.ViewMiscaristocareTitle_modTratareidModTratare}"/>
+                        <h:outputText value="#{bundle.ViewMiscaristocareLabel_tipStocareidTipStocare}"/>
+                        <h:outputText value="#{miscaristocareController.selected.tipStocareidTipStocare}" title="#{bundle.ViewMiscaristocareTitle_tipStocareidTipStocare}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MiscaristocareViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

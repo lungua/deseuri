@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeseuripunctlucruCreateDlg" widgetVar="DeseuripunctlucruCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDeseuripunctlucruTitle}">
+            <h:form id="DeseuripunctlucruCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deseuripunctlucruController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_idDeseuri}" for="idDeseuri" />
+                        <p:inputText id="idDeseuri" value="#{deseuripunctlucruController.selected.idDeseuri}" title="#{bundle.CreateDeseuripunctlucruTitle_idDeseuri}" required="true" requiredMessage="#{bundle.CreateDeseuripunctlucruRequiredMessage_idDeseuri}"/>
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_numeDeseu}" for="numeDeseu" />
+                        <p:inputTextarea rows="4" cols="30" id="numeDeseu" value="#{deseuripunctlucruController.selected.numeDeseu}" title="#{bundle.CreateDeseuripunctlucruTitle_numeDeseu}" />
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_periculozitate}" for="periculozitate" />
+                        <p:selectBooleanCheckbox id="periculozitate" value="#{deseuripunctlucruController.selected.periculozitate}" />
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_stocInitial}" for="stocInitial" />
+                        <p:inputText id="stocInitial" value="#{deseuripunctlucruController.selected.stocInitial}" title="#{bundle.CreateDeseuripunctlucruTitle_stocInitial}" />
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_stocInceputLuna}" for="stocInceputLuna" />
+                        <p:inputText id="stocInceputLuna" value="#{deseuripunctlucruController.selected.stocInceputLuna}" title="#{bundle.CreateDeseuripunctlucruTitle_stocInceputLuna}" />
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_clasificareDinidClasificareDin}" for="clasificareDinidClasificareDin" />
+                        <p:selectOneMenu id="clasificareDinidClasificareDin" value="#{deseuripunctlucruController.selected.clasificareDinidClasificareDin}" required="true" requiredMessage="#{bundle.EditDeseuripunctlucruRequiredMessage_clasificareDinidClasificareDin}">
+                            <f:selectItems value="#{clasificaredinController.itemsAvailableSelectOne}"
+                                           var="clasificareDinidClasificareDinItem"
+                                           itemValue="#{clasificareDinidClasificareDinItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_punctLucruidPunctLucru}" for="punctLucruidPunctLucru" />
+                        <p:selectOneMenu id="punctLucruidPunctLucru" value="#{deseuripunctlucruController.selected.punctLucruidPunctLucru}" required="true" requiredMessage="#{bundle.EditDeseuripunctlucruRequiredMessage_punctLucruidPunctLucru}">
+                            <f:selectItems value="#{punctlucruController.itemsAvailableSelectOne}"
+                                           var="punctLucruidPunctLucruItem"
+                                           itemValue="#{punctLucruidPunctLucruItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_codDeseuidCodDeseu}" for="codDeseuidCodDeseu" />
+                        <p:selectOneMenu id="codDeseuidCodDeseu" value="#{deseuripunctlucruController.selected.codDeseuidCodDeseu}" required="true" requiredMessage="#{bundle.EditDeseuripunctlucruRequiredMessage_codDeseuidCodDeseu}">
+                            <f:selectItems value="#{coddeseuController.itemsAvailableSelectOne}"
+                                           var="codDeseuidCodDeseuItem"
+                                           itemValue="#{codDeseuidCodDeseuItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeseuripunctlucruLabel_UMidUM}" for="UMidUM" />
+                        <p:selectOneMenu id="UMidUM" value="#{deseuripunctlucruController.selected.UMidUM}" required="true" requiredMessage="#{bundle.EditDeseuripunctlucruRequiredMessage_UMidUM}">
+                            <f:selectItems value="#{umController.itemsAvailableSelectOne}"
+                                           var="UMidUMItem"
+                                           itemValue="#{UMidUMItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{deseuripunctlucruController.create}" value="#{bundle.Save}" update="display,:DeseuripunctlucruListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeseuripunctlucruCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DeseuripunctlucruCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarilunaViewDlg" widgetVar="MiscarilunaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMiscarilunaTitle}">
+            <h:form id="MiscarilunaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarilunaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_idMiscariLuna}"/>
+                        <h:outputText value="#{miscarilunaController.selected.idMiscariLuna}" title="#{bundle.ViewMiscarilunaTitle_idMiscariLuna}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_stocInceput}"/>
+                        <h:outputText value="#{miscarilunaController.selected.stocInceput}" title="#{bundle.ViewMiscarilunaTitle_stocInceput}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_stocSfirsit}"/>
+                        <h:outputText value="#{miscarilunaController.selected.stocSfirsit}" title="#{bundle.ViewMiscarilunaTitle_stocSfirsit}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_cantRezultata}"/>
+                        <h:outputText value="#{miscarilunaController.selected.cantRezultata}" title="#{bundle.ViewMiscarilunaTitle_cantRezultata}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_componenteComercializate}"/>
+                        <h:outputText value="#{miscarilunaController.selected.componenteComercializate}" title="#{bundle.ViewMiscarilunaTitle_componenteComercializate}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_cantReciclate}"/>
+                        <h:outputText value="#{miscarilunaController.selected.cantReciclate}" title="#{bundle.ViewMiscarilunaTitle_cantReciclate}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_cantValorificate}"/>
+                        <h:outputText value="#{miscarilunaController.selected.cantValorificate}" title="#{bundle.ViewMiscarilunaTitle_cantValorificate}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_cantEliminate}"/>
+                        <h:outputText value="#{miscarilunaController.selected.cantEliminate}" title="#{bundle.ViewMiscarilunaTitle_cantEliminate}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_agentElconomic}"/>
+                        <h:outputText value="#{miscarilunaController.selected.agentElconomic}" title="#{bundle.ViewMiscarilunaTitle_agentElconomic}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_vsuNr}"/>
+                        <h:outputText value="#{miscarilunaController.selected.vsuNr}" title="#{bundle.ViewMiscarilunaTitle_vsuNr}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_lunaidLuna}"/>
+                        <h:outputText value="#{miscarilunaController.selected.lunaidLuna}" title="#{bundle.ViewMiscarilunaTitle_lunaidLuna}"/>
+                        <h:outputText value="#{bundle.ViewMiscarilunaLabel_deseuriPunctLucruidDeseuri}"/>
+                        <h:outputText value="#{miscarilunaController.selected.deseuriPunctLucruidDeseuri}" title="#{bundle.ViewMiscarilunaTitle_deseuriPunctLucruidDeseuri}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MiscarilunaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AnulCreateDlg" widgetVar="AnulCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAnulTitle}">
+            <h:form id="AnulCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anulController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAnulLabel_idAnul}" for="idAnul" />
+                        <p:inputText id="idAnul" value="#{anulController.selected.idAnul}" title="#{bundle.CreateAnulTitle_idAnul}" required="true" requiredMessage="#{bundle.CreateAnulRequiredMessage_idAnul}"/>
+                        <p:outputLabel value="#{bundle.CreateAnulLabel_anul}" for="anul" />
+                        <p:inputText id="anul" value="#{anulController.selected.anul}" title="#{bundle.CreateAnulTitle_anul}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anulController.create}" value="#{bundle.Save}" update="display,:AnulListForm:datalist,:growl" oncomplete="handleSubmit(args,'AnulCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AnulCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

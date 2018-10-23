@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantcomercializataEditDlg" widgetVar="CantcomercializataEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCantcomercializataTitle}">
+            <h:form id="CantcomercializataEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantcomercializataController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_idCantComercializata}" for="idCantComercializata" />
+                        <p:inputText id="idCantComercializata" value="#{cantcomercializataController.selected.idCantComercializata}" title="#{bundle.EditCantcomercializataTitle_idCantComercializata}" required="true" requiredMessage="#{bundle.EditCantcomercializataRequiredMessage_idCantComercializata}"/>
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{cantcomercializataController.selected.cantitate}" title="#{bundle.EditCantcomercializataTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_document}" for="document" />
+                        <p:inputTextarea rows="4" cols="30" id="document" value="#{cantcomercializataController.selected.document}" title="#{bundle.EditCantcomercializataTitle_document}" />
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_dataDocument}" for="dataDocument" />
+                        <p:calendar id="dataDocument" pattern="MM/dd/yyyy" value="#{cantcomercializataController.selected.dataDocument}" title="#{bundle.EditCantcomercializataTitle_dataDocument}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_observatii}" for="observatii" />
+                        <p:inputTextarea rows="4" cols="30" id="observatii" value="#{cantcomercializataController.selected.observatii}" title="#{bundle.EditCantcomercializataTitle_observatii}" />
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_agentEc}" for="agentEc" />
+                        <p:inputTextarea rows="4" cols="30" id="agentEc" value="#{cantcomercializataController.selected.agentEc}" title="#{bundle.EditCantcomercializataTitle_agentEc}" />
+                        <p:outputLabel value="#{bundle.EditCantcomercializataLabel_miscariLunaidMiscariLuna}" for="miscariLunaidMiscariLuna" />
+                        <p:selectOneMenu id="miscariLunaidMiscariLuna" value="#{cantcomercializataController.selected.miscariLunaidMiscariLuna}" required="true" requiredMessage="#{bundle.EditCantcomercializataRequiredMessage_miscariLunaidMiscariLuna}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{miscarilunaController.itemsAvailableSelectOne}"
+                                           var="miscariLunaidMiscariLunaItem"
+                                           itemValue="#{miscariLunaidMiscariLunaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cantcomercializataController.update}" value="#{bundle.Save}" update="display,:CantcomercializataListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CantcomercializataEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CantcomercializataEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

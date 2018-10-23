@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMiscaristocareTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MiscaristocareListForm">
+                <p:panel header="#{bundle.ListMiscaristocareTitle}">
+                    <p:dataTable id="datalist" value="#{miscaristocareController.items}" var="item"
+                                 selectionMode="single" selection="#{miscaristocareController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idMiscariStocare}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_idMiscariStocare}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMiscariStocare}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_cantitate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantitate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_tipDoc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipDoc}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_dataDoc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataDoc}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_miscariLunaidMiscariLuna}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.miscariLunaidMiscariLuna}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_destinatiaidDestinatia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.destinatiaidDestinatia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_mijlocTransportidMijlocTransport}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mijlocTransportidMijlocTransport}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_scopulTratariiidScopulTratarii}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scopulTratariiidScopulTratarii}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_modTratareidModTratare}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modTratareidModTratare}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscaristocareTitle_tipStocareidTipStocare}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipStocareidTipStocare}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscaristocareController.prepareCreate}" update=":MiscaristocareCreateForm" oncomplete="PF('MiscaristocareCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscaristocareViewForm" oncomplete="PF('MiscaristocareViewDialog').show()" disabled="#{empty miscaristocareController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscaristocareEditForm" oncomplete="PF('MiscaristocareEditDialog').show()" disabled="#{empty miscaristocareController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscaristocareController.destroy}" update=":growl,datalist" disabled="#{empty miscaristocareController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

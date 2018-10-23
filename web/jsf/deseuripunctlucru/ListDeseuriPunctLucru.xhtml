@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDeseuripunctlucruTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <div style="width: 100%;height: 5%;">
+                <font size="5" color="green">Actualizare coduri deseuri pentru punctul de lucru</font>
+            </div>
+            <div id="div211" style="width: 100%;height: 20%; border: #FFFFFF; "> 
+                <p:panelGrid id="pgid2"  columns="2" style="width: 60% ;border: #FFFFFF !important;">
+                    <p:row  id="idrow137" >
+
+                        <p:column style="width: 30% ;border: #FFFFFF !important; " >
+                            <p><b> selectati Punctul de lucru :</b></p>
+                            <h:form id="form2x">
+                                <p:selectOneMenu  value="#{punctlucruController.selectPL}" filter="true" filterMatchMode="contains" 
+                                                  converter="punctlucruConverter" var="p0" onchange="submit()"
+                                                  valueChangeListener="#{deseuripunctlucruController.changePunctLucru}" style="width: 250px" >
+
+                                    <f:selectItem itemLabel="selectati punct lucru" itemValue="" />
+                                    <f:selectItems value="#{punctlucruController.itemsPL}" var="player1"
+                                                   itemLabel="#{player1.numePunct}"  itemValue="#{player1}" 
+                                                   />
+                                    <p:column>
+                                        #{p0.numePunct} 
+                                    </p:column>
+                                </p:selectOneMenu>
+
+
+                            </h:form>
+                        </p:column>
+                    </p:row>
+
+
+                    <p:row  id="idrow136">
+                        <p:column style="width: 30%;border: #FFFFFF !important ;" >
+                            <p><b> selectati Clasificare :</b></p>
+                            <h:form id="form3x">
+                                <p:selectOneMenu  value="#{clasificaredinController.selectedClasif}" filter="true" filterMatchMode="contains" 
+                                                  converter="clasificaredinConverter" var="p" onchange="submit()"
+                                                  valueChangeListener="#{deseuripunctlucruController.changeClasificaredin}" style="width: 250px" >
+                                    <f:selectItem itemLabel="TipClasificare" itemValue="" />
+                                    <f:selectItems value="#{clasificaredinController.items}" var="player"
+                                                   itemLabel="#{player.codClasificare}" itemValue="#{player}"
+                                                   />
+                                    <p:column>
+                                        #{p.codClasificare} 
+                                    </p:column>
+                                </p:selectOneMenu>
+
+                            </h:form>
+                        </p:column>
+                    </p:row>
+
+                </p:panelGrid>
+            </div>
+
+
+
+
+
+            <div style="width: 100%;height: 40% ">
+                Selectati Codul Deseu:
+                <h:form id="CoddeseuListForm">
+                    <p:panel >
+                        <p:dataTable id="datalist" value="#{coddeseuController.items}" var="item"
+                                     selectionMode="single" selection="#{coddeseuController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.idCodDeseu}"
+                                     rows="20"
+                                     paginatorPosition="top"
+                                     rowsPerPageTemplate="50,100,200"
+                                     editable="true"
+                                     style="width: 100%;font-size: 10px;"
+                                     scrollable="true"
+
+                                     scrollHeight="200"
+                                     >
+
+                            <p:ajax event="rowSelect" listener="#{deseuripunctlucruController.onRowSelect}"  update=""/>
+                            <p:ajax event="rowUnselect" update=""/>
+
+                            <p:column style="width: 15%"   sortBy="#{item.codDeseu}" filterBy="#{item.codDeseu}" filterMatchMode="contains">
+                                <f:facet   name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Cod Deseu"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.codDeseu}"/>
+                            </p:column>
+                            <p:column style="width: 30%"   sortBy="#{item.numeCodDeseu}" filterBy="#{item.numeCodDeseu}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Nume CodDeseu"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.numeCodDeseu}"/>
+                            </p:column>
+                            <p:column style="width: 30%px ; "   sortBy="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.numeSubcategorie}" filterBy="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.numeSubcategorie}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Subcategorie Deseu"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.numeSubcategorie}"/>
+                            </p:column>
+                            <p:column style="width: 15%"   sortBy="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.categoriiDeseuriidCategoriiDeseuri.codCategorie}" filterBy="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.categoriiDeseuriidCategoriiDeseuri.codCategorie}" filterMatchMode="contains">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Categorie Deseu" />
+                                </f:facet>
+                                <h:outputText  value="#{item.subcategoriiDeseuriidSubcategoriiDeseuri.categoriiDeseuriidCategoriiDeseuri.codCategorie}"/>
+                            </p:column>
+                            
+                            
+                            
+                            <f:facet name="footer">
+                            </f:facet>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+
+            </div>
+
+            <div style="width: 100%;height: 40% ">
+                <h:form id="DeseuripunctlucruListForm">
+                    <p:panel header="#{bundle.ListDeseuripunctlucruTitle}">
+                        <p:dataTable id="datalist" value="#{deseuripunctlucruController.itemsPL}" var="item"
+                                     selectionMode="single" selection="#{deseuripunctlucruController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.idDeseuri}"
+                                     rows="20"
+                                     paginatorPosition="top"
+                                     rowsPerPageTemplate="50,100,200"
+                                     editable="true"
+                                     style="width: 100%;font-size: 10px;"
+                                     scrollable="true"
+
+                                     scrollHeight="200"
+                                     >
+
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton "/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton "/>
+
+                            
+                            <p:column style=" width: 250px">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Nume Deseu"/>
+                                </f:facet>
+                                <h:outputText   value="#{item.numeDeseu}"/>
+                            </p:column>
+                            
+                            <p:column style=" width: 150px">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="#{bundle.ListDeseuripunctlucruTitle_periculozitate}"/>
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="#{item.periculozitate}" disabled="true"/>
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="#{bundle.ListDeseuripunctlucruTitle_stocInitial}"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.stocInitial}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="#{bundle.ListDeseuripunctlucruTitle_stocInceputLuna}"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.stocInceputLuna}"/>
+                            </p:column>
+                            
+                            
+                            <p:column style=" width: 350px">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;width: 500px" value="Nume Cod Deseu"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.codDeseuidCodDeseu.numeCodDeseu}"/>
+                            </p:column>
+                            <p:column style=" width: 100px">
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="Cod Deseu"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.codDeseuidCodDeseu.codDeseu}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText style=" font-size: 8px;" value="#{bundle.ListDeseuripunctlucruTitle_UMidUM}"/>
+                                </f:facet>
+                                <h:outputText  value="#{item.UMidUM.numeUM}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deseuripunctlucruController.prepareCreate}" update=":DeseuripunctlucruCreateForm" oncomplete="PF('DeseuripunctlucruCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DeseuripunctlucruViewForm" oncomplete="PF('DeseuripunctlucruViewDialog').show()" disabled="#{empty deseuripunctlucruController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DeseuripunctlucruEditForm" oncomplete="PF('DeseuripunctlucruEditDialog').show()" disabled="#{empty deseuripunctlucruController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{deseuripunctlucruController.destroy}" update=":growl,datalist" disabled="#{empty deseuripunctlucruController.selected}"/>
+                            </f:facet>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+                <ui:include src="CreateDeseuri.xhtml"/>
+                <ui:include src="Edit.xhtml"/>
+                <ui:include src="View.xhtml"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

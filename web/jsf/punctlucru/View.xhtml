@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PunctlucruViewDlg" widgetVar="PunctlucruViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPunctlucruTitle}">
+            <h:form id="PunctlucruViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{punctlucruController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPunctlucruLabel_idPunctLucru}"/>
+                        <h:outputText value="#{punctlucruController.selected.idPunctLucru}" title="#{bundle.ViewPunctlucruTitle_idPunctLucru}"/>
+                        <h:outputText value="#{bundle.ViewPunctlucruLabel_numePunct}"/>
+                        <h:outputText value="#{punctlucruController.selected.numePunct}" title="#{bundle.ViewPunctlucruTitle_numePunct}"/>
+                        <h:outputText value="#{bundle.ViewPunctlucruLabel_telefon}"/>
+                        <h:outputText value="#{punctlucruController.selected.telefon}" title="#{bundle.ViewPunctlucruTitle_telefon}"/>
+                        <h:outputText value="#{bundle.ViewPunctlucruLabel_societateidSocietate}"/>
+                        <h:outputText value="#{punctlucruController.selected.societateidSocietate}" title="#{bundle.ViewPunctlucruTitle_societateidSocietate}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PunctlucruViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

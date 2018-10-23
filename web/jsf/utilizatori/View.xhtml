@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UtilizatoriViewDlg" widgetVar="UtilizatoriViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUtilizatoriTitle}">
+            <h:form id="UtilizatoriViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{utilizatoriController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_idUtilizatori}"/>
+                        <h:outputText value="#{utilizatoriController.selected.idUtilizatori}" title="#{bundle.ViewUtilizatoriTitle_idUtilizatori}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_utilizator}"/>
+                        <h:outputText value="#{utilizatoriController.selected.utilizator}" title="#{bundle.ViewUtilizatoriTitle_utilizator}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_parola}"/>
+                        <h:outputText value="#{utilizatoriController.selected.parola}" title="#{bundle.ViewUtilizatoriTitle_parola}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_nume}"/>
+                        <h:outputText value="#{utilizatoriController.selected.nume}" title="#{bundle.ViewUtilizatoriTitle_nume}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_prenume}"/>
+                        <h:outputText value="#{utilizatoriController.selected.prenume}" title="#{bundle.ViewUtilizatoriTitle_prenume}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_adresa}"/>
+                        <h:outputText value="#{utilizatoriController.selected.adresa}" title="#{bundle.ViewUtilizatoriTitle_adresa}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_email}"/>
+                        <h:outputText value="#{utilizatoriController.selected.email}" title="#{bundle.ViewUtilizatoriTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUtilizatoriLabel_telefon}"/>
+                        <h:outputText value="#{utilizatoriController.selected.telefon}" title="#{bundle.ViewUtilizatoriTitle_telefon}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UtilizatoriViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

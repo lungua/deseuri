@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeseuripunctlucruViewDlg" widgetVar="DeseuripunctlucruViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeseuripunctlucruTitle}">
+            <h:form id="DeseuripunctlucruViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deseuripunctlucruController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_idDeseuri}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.idDeseuri}" title="#{bundle.ViewDeseuripunctlucruTitle_idDeseuri}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_numeDeseu}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.numeDeseu}" title="#{bundle.ViewDeseuripunctlucruTitle_numeDeseu}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_periculozitate}"/>
+                        <p:selectBooleanCheckbox value="#{deseuripunctlucruController.selected.periculozitate}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_stocInitial}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.stocInitial}" title="#{bundle.ViewDeseuripunctlucruTitle_stocInitial}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_stocInceputLuna}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.stocInceputLuna}" title="#{bundle.ViewDeseuripunctlucruTitle_stocInceputLuna}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_clasificareDinidClasificareDin}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.clasificareDinidClasificareDin}" title="#{bundle.ViewDeseuripunctlucruTitle_clasificareDinidClasificareDin}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_punctLucruidPunctLucru}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.punctLucruidPunctLucru}" title="#{bundle.ViewDeseuripunctlucruTitle_punctLucruidPunctLucru}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_codDeseuidCodDeseu}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.codDeseuidCodDeseu}" title="#{bundle.ViewDeseuripunctlucruTitle_codDeseuidCodDeseu}"/>
+                        <h:outputText value="#{bundle.ViewDeseuripunctlucruLabel_UMidUM}"/>
+                        <h:outputText value="#{deseuripunctlucruController.selected.UMidUM}" title="#{bundle.ViewDeseuripunctlucruTitle_UMidUM}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DeseuripunctlucruViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

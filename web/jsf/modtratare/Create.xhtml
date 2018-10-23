@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ModtratareCreateDlg" widgetVar="ModtratareCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateModtratareTitle}">
+            <h:form id="ModtratareCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{modtratareController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateModtratareLabel_idModTratare}" for="idModTratare" />
+                        <p:inputText id="idModTratare" value="#{modtratareController.selected.idModTratare}" title="#{bundle.CreateModtratareTitle_idModTratare}" required="true" requiredMessage="#{bundle.CreateModtratareRequiredMessage_idModTratare}"/>
+                        <p:outputLabel value="#{bundle.CreateModtratareLabel_cod}" for="cod" />
+                        <p:inputTextarea rows="4" cols="30" id="cod" value="#{modtratareController.selected.cod}" title="#{bundle.CreateModtratareTitle_cod}" />
+                        <p:outputLabel value="#{bundle.CreateModtratareLabel_denumire}" for="denumire" />
+                        <p:inputTextarea rows="4" cols="30" id="denumire" value="#{modtratareController.selected.denumire}" title="#{bundle.CreateModtratareTitle_denumire}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{modtratareController.create}" value="#{bundle.Save}" update="display,:ModtratareListForm:datalist,:growl" oncomplete="handleSubmit(args,'ModtratareCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ModtratareCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

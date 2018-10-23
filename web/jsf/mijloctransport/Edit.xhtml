@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MijloctransportEditDlg" widgetVar="MijloctransportEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMijloctransportTitle}">
+            <h:form id="MijloctransportEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mijloctransportController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMijloctransportLabel_idMijlocTransport}" for="idMijlocTransport" />
+                        <p:inputText id="idMijlocTransport" value="#{mijloctransportController.selected.idMijlocTransport}" title="#{bundle.EditMijloctransportTitle_idMijlocTransport}" required="true" requiredMessage="#{bundle.EditMijloctransportRequiredMessage_idMijlocTransport}"/>
+                        <p:outputLabel value="#{bundle.EditMijloctransportLabel_cod}" for="cod" />
+                        <p:inputTextarea rows="4" cols="30" id="cod" value="#{mijloctransportController.selected.cod}" title="#{bundle.EditMijloctransportTitle_cod}" />
+                        <p:outputLabel value="#{bundle.EditMijloctransportLabel_denumire}" for="denumire" />
+                        <p:inputTextarea rows="4" cols="30" id="denumire" value="#{mijloctransportController.selected.denumire}" title="#{bundle.EditMijloctransportTitle_denumire}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mijloctransportController.update}" value="#{bundle.Save}" update="display,:MijloctransportListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MijloctransportEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MijloctransportEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

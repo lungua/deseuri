@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition rendered="#{utilizatoriController.selectatLeft}" template="./login.xhtml">
+
+            <ui:define name="left">
+                <h:form >         
+                    <p:growl autoUpdate="true"/>
+
+                    <p:panelMenu style="width:98%;"  >
+                        
+                        <p:submenu rendered="#{!utilizatoriController.selectatSocietate}" label="Unitati,Punte de Lucru"  >
+                            <p:menuitem value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Selectie Unitate" disabled="#{utilizatoriController.selectatSocietate}"   actionListener="#{societateController.linkSelectSocietate}" style="font-size: 15px; font-family:serif; "  />
+                        </p:submenu>
+                        
+                        
+                        
+                        <p:submenu rendered="#{utilizatoriController.selectatSocietate}" label="Miscari Generare Luna"  >
+                            <p:menuitem disabled="#{!utilizatoriController.selectatSocietate}" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Miscari Generare Luna" actionListener="#{miscarilunaController.linkMG1}" style="font-size: 15px; font-family:serif; "  />
+                            
+                        </p:submenu>
+                        
+                        <p:submenu rendered="#{utilizatoriController.selectatSocietate}" label="Actualizari diverse"  >
+                            <p:menuitem disabled="#{!utilizatoriController.selectatSocietate}" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Unitati Masura" actionListener="#{umController.linkUM}" style="font-size: 15px; font-family:serif; "  />
+                            <p:menuitem disabled="#{!utilizatoriController.selectatSocietate}" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    TipCoduri" actionListener="#{clasificaredinController.linkClasif}" style="font-size: 15px; font-family:serif; " title="Ce tip de coduri introduceti" />
+                        </p:submenu>
+
+                        <p:submenu rendered="#{utilizatoriController.selectatSocietate}" label="Deseuri aferente Punctului de lucru"  >
+                            <p:menuitem disabled="#{!utilizatoriController.selectatSocietate}" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Deseuri aferente Punctului de lucru" actionListener="#{deseuripunctlucruController.linkDeses}" style="font-size: 15px; font-family:serif; "  />
+                        </p:submenu>
+                        
+                    </p:panelMenu>
+
+                </h:form> 
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

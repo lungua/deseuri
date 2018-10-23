@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+       
+        
+        <p:dialog id="MiscarigenerareEditDlg" widgetVar="MiscarigenerareEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMiscarigenerareTitle}">
+            <h:form id="MiscarigenerareEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarigenerareController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_idMiscariGenerare}" for="idMiscariGenerare" />
+                        <p:inputText id="idMiscariGenerare" value="#{miscarigenerareController.selected.idMiscariGenerare}" title="#{bundle.EditMiscarigenerareTitle_idMiscariGenerare}" required="true" requiredMessage="#{bundle.EditMiscarigenerareRequiredMessage_idMiscariGenerare}"/>
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{miscarigenerareController.selected.cantitate}" title="#{bundle.EditMiscarigenerareTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_stocInceputLuna}" for="stocInceputLuna" />
+                        <p:inputText id="stocInceputLuna" value="#{miscarigenerareController.selected.stocInceputLuna}" title="#{bundle.EditMiscarigenerareTitle_stocInceputLuna}" />
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscarigenerareController.selected.tipDoc}" title="#{bundle.EditMiscarigenerareTitle_tipDoc}" />
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="MM/dd/yyyy" value="#{miscarigenerareController.selected.dataDoc}" title="#{bundle.EditMiscarigenerareTitle_dataDoc}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMiscarigenerareLabel_miscariLunaidMiscariLuna}" for="miscariLunaidMiscariLuna" />
+                        <p:selectOneMenu id="miscariLunaidMiscariLuna" value="#{miscarigenerareController.selected.miscariLunaidMiscariLuna}" required="true" requiredMessage="#{bundle.EditMiscarigenerareRequiredMessage_miscariLunaidMiscariLuna}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{miscarilunaController.itemsAvailableSelectOne}"
+                                           var="miscariLunaidMiscariLunaItem"
+                                           itemValue="#{miscariLunaidMiscariLunaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarigenerareController.update}" value="#{bundle.Save}" update="display,:MiscarigenerareListForm:datalist,:growl :MiscarilunaListForm :MiscarigenerareListForm" oncomplete="handleSubmit(args, 'MiscarigenerareEditDialog');" onclick="MiscarigenerareEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarigenerareEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+
+    </ui:composition>
+</html>

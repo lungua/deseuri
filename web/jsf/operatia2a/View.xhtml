@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Operatia2aViewDlg" widgetVar="Operatia2aViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOperatia2aTitle}">
+            <h:form id="Operatia2aViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{operatia2aController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOperatia2aLabel_idOperatia2A}"/>
+                        <h:outputText value="#{operatia2aController.selected.idOperatia2A}" title="#{bundle.ViewOperatia2aTitle_idOperatia2A}"/>
+                        <h:outputText value="#{bundle.ViewOperatia2aLabel_cod}"/>
+                        <h:outputText value="#{operatia2aController.selected.cod}" title="#{bundle.ViewOperatia2aTitle_cod}"/>
+                        <h:outputText value="#{bundle.ViewOperatia2aLabel_denumire}"/>
+                        <h:outputText value="#{operatia2aController.selected.denumire}" title="#{bundle.ViewOperatia2aTitle_denumire}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="Operatia2aViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

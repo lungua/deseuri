@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantrezultataEditDlg" widgetVar="CantrezultataEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCantrezultataTitle}">
+            <h:form id="CantrezultataEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantrezultataController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_idCantRezultata}" for="idCantRezultata" />
+                        <p:inputText id="idCantRezultata" value="#{cantrezultataController.selected.idCantRezultata}" title="#{bundle.EditCantrezultataTitle_idCantRezultata}" required="true" requiredMessage="#{bundle.EditCantrezultataRequiredMessage_idCantRezultata}"/>
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{cantrezultataController.selected.cantitate}" title="#{bundle.EditCantrezultataTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_document}" for="document" />
+                        <p:inputTextarea rows="4" cols="30" id="document" value="#{cantrezultataController.selected.document}" title="#{bundle.EditCantrezultataTitle_document}" />
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_dataDocument}" for="dataDocument" />
+                        <p:calendar id="dataDocument" pattern="MM/dd/yyyy" value="#{cantrezultataController.selected.dataDocument}" title="#{bundle.EditCantrezultataTitle_dataDocument}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_observatii}" for="observatii" />
+                        <p:inputTextarea rows="4" cols="30" id="observatii" value="#{cantrezultataController.selected.observatii}" title="#{bundle.EditCantrezultataTitle_observatii}" />
+                        <p:outputLabel value="#{bundle.EditCantrezultataLabel_miscariLunaidMiscariLuna}" for="miscariLunaidMiscariLuna" />
+                        <p:selectOneMenu id="miscariLunaidMiscariLuna" value="#{cantrezultataController.selected.miscariLunaidMiscariLuna}" required="true" requiredMessage="#{bundle.EditCantrezultataRequiredMessage_miscariLunaidMiscariLuna}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{miscarilunaController.itemsAvailableSelectOne}"
+                                           var="miscariLunaidMiscariLunaItem"
+                                           itemValue="#{miscariLunaidMiscariLunaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cantrezultataController.update}" value="#{bundle.Save}" update="display,:CantrezultataListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CantrezultataEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CantrezultataEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

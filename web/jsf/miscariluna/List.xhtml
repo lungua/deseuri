@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMiscarilunaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MiscarilunaListForm">
+                <p:panel header="#{bundle.ListMiscarilunaTitle}">
+                    <p:dataTable id="datalist" value="#{miscarilunaController.items}" var="item"
+                                 selectionMode="single" selection="#{miscarilunaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idMiscariLuna}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_idMiscariLuna}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMiscariLuna}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_stocInceput}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stocInceput}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_stocSfirsit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stocSfirsit}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_cantRezultata}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantRezultata}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_componenteComercializate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.componenteComercializate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_cantReciclate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantReciclate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_cantValorificate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantValorificate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_cantEliminate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantEliminate}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_agentElconomic}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.agentElconomic}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_vsuNr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vsuNr}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_lunaidLuna}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lunaidLuna}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiscarilunaTitle_deseuriPunctLucruidDeseuri}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deseuriPunctLucruidDeseuri}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscarilunaController.prepareCreate}" update=":MiscarilunaCreateForm" oncomplete="PF('MiscarilunaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscarilunaViewForm" oncomplete="PF('MiscarilunaViewDialog').show()" disabled="#{empty miscarilunaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscarilunaEditForm" oncomplete="PF('MiscarilunaEditDialog').show()" disabled="#{empty miscarilunaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscarilunaController.destroy}" update=":growl,datalist" disabled="#{empty miscarilunaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

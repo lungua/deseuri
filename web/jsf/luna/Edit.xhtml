@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LunaEditDlg" widgetVar="LunaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLunaTitle}">
+            <h:form id="LunaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lunaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLunaLabel_idLuna}" for="idLuna" />
+                        <p:inputText id="idLuna" value="#{lunaController.selected.idLuna}" title="#{bundle.EditLunaTitle_idLuna}" required="true" requiredMessage="#{bundle.EditLunaRequiredMessage_idLuna}"/>
+                        <p:outputLabel value="#{bundle.EditLunaLabel_luna}" for="luna" />
+                        <p:inputText id="luna" value="#{lunaController.selected.luna}" title="#{bundle.EditLunaTitle_luna}" />
+                        <p:outputLabel value="#{bundle.EditLunaLabel_punctLucruidPunctLucru}" for="punctLucruidPunctLucru" />
+                        <p:selectOneMenu id="punctLucruidPunctLucru" value="#{lunaController.selected.punctLucruidPunctLucru}" required="true" requiredMessage="#{bundle.EditLunaRequiredMessage_punctLucruidPunctLucru}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{punctlucruController.itemsAvailableSelectOne}"
+                                           var="punctLucruidPunctLucruItem"
+                                           itemValue="#{punctLucruidPunctLucruItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLunaLabel_anulidAnul}" for="anulidAnul" />
+                        <p:selectOneMenu id="anulidAnul" value="#{lunaController.selected.anulidAnul}" required="true" requiredMessage="#{bundle.EditLunaRequiredMessage_anulidAnul}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{anulController.itemsAvailableSelectOne}"
+                                           var="anulidAnulItem"
+                                           itemValue="#{anulidAnulItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lunaController.update}" value="#{bundle.Save}" update="display,:LunaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LunaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LunaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

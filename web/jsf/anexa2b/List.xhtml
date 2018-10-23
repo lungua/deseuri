@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAnexa2bTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="Anexa2bListForm">
+                <p:panel header="#{bundle.ListAnexa2bTitle}">
+                    <p:dataTable id="datalist" value="#{anexa2bController.items}" var="item"
+                                 selectionMode="single" selection="#{anexa2bController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idAnexa2B}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnexa2bTitle_idAnexa2B}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAnexa2B}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnexa2bTitle_cod}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cod}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnexa2bTitle_denumirea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.denumirea}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{anexa2bController.prepareCreate}" update=":Anexa2bCreateForm" oncomplete="PF('Anexa2bCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":Anexa2bViewForm" oncomplete="PF('Anexa2bViewDialog').show()" disabled="#{empty anexa2bController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":Anexa2bEditForm" oncomplete="PF('Anexa2bEditDialog').show()" disabled="#{empty anexa2bController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{anexa2bController.destroy}" update=":growl,datalist" disabled="#{empty anexa2bController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

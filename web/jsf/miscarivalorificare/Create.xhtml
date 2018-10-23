@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarivalorificareCreateDlg" widgetVar="MiscarivalorificareCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMiscarivalorificareTitle}">
+            <h:form id="MiscarivalorificareCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarivalorificareController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_idMiscariValorificare}" for="idMiscariValorificare" />
+                        <p:inputText disabled="true" id="idMiscariValorificare" value="#{miscarivalorificareController.selected.idMiscariValorificare}" title="#{bundle.CreateMiscarivalorificareTitle_idMiscariValorificare}" required="true" requiredMessage="#{bundle.CreateMiscarivalorificareRequiredMessage_idMiscariValorificare}"/>
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{miscarivalorificareController.selected.cantitate}" title="#{bundle.CreateMiscarivalorificareTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_adentEc}" for="adentEc" />
+                        <p:inputTextarea rows="4" cols="30" id="adentEc" value="#{miscarivalorificareController.selected.adentEc}" title="#{bundle.CreateMiscarivalorificareTitle_adentEc}" />
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscarivalorificareController.selected.tipDoc}" title="#{bundle.CreateMiscarivalorificareTitle_tipDoc}" />
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="dd.MM.yyyy" value="#{miscarivalorificareController.selected.dataDoc}" title="#{bundle.EditMiscarivalorificareTitle_dataDoc}"  showOn="button" timeZone="EET"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarivalorificareLabel_anexa2BidAnexa2B}" for="anexa2BidAnexa2B" />
+                        <p:selectOneMenu id="anexa2BidAnexa2B" value="#{miscarivalorificareController.selected.anexa2BidAnexa2B}" required="true" requiredMessage="#{bundle.EditMiscarivalorificareRequiredMessage_anexa2BidAnexa2B}">
+                            <f:selectItems value="#{anexa2bController.itemsAvailableSelectOne}"
+                                           var="anexa2BidAnexa2BItem"
+                                           itemLabel="#{anexa2BidAnexa2BItem.denumirea}"
+                                           itemValue="#{anexa2BidAnexa2BItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarivalorificareController.create}" value="#{bundle.Save}" update="display,:MiscarivalorificareListForm:datalist,:growl :MiscarilunaListForm :MiscarivalorificareListForm :MiscarivalorificareListForm" oncomplete="handleSubmit(args,'MiscarivalorificareCreateDialog');" onclick="MiscarivalorificareCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarivalorificareCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

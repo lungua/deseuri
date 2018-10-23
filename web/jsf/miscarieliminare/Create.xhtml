@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarieliminareCreateDlg" widgetVar="MiscarieliminareCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMiscarieliminareTitle}">
+            <h:form id="MiscarieliminareCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarieliminareController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMiscarieliminareLabel_idMiscariEliminare}" for="idMiscariEliminare" />
+                        <p:inputText disabled="true" id="idMiscariEliminare" value="#{miscarieliminareController.selected.idMiscariEliminare}" title="#{bundle.CreateMiscarieliminareTitle_idMiscariEliminare}" required="true" requiredMessage="#{bundle.CreateMiscarieliminareRequiredMessage_idMiscariEliminare}"/>
+                        <p:outputLabel value="#{bundle.CreateMiscarieliminareLabel_cantitatea}" for="cantitatea" />
+                        <p:inputText id="cantitatea" value="#{miscarieliminareController.selected.cantitatea}" title="#{bundle.CreateMiscarieliminareTitle_cantitatea}" />
+                        <p:outputLabel value="#{bundle.CreateMiscarieliminareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscarieliminareController.selected.tipDoc}" title="#{bundle.CreateMiscarieliminareTitle_tipDoc}" />
+                        
+                        <p:outputLabel value="AgentEconomic}" for="tipAg" />
+                        <p:inputTextarea rows="4" cols="30" id="tipAg" value="#{miscarieliminareController.selected.agentEc}" title="Agent Economic" />
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarieliminareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="dd.MM.yyyy" value="#{miscarieliminareController.selected.dataDoc}" title="#{bundle.EditMiscarieliminareTitle_dataDoc}"  showOn="button" timeZone="EET"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarieliminareLabel_operatia2AidOperatia2A}" for="operatia2AidOperatia2A" />
+                        <p:selectOneMenu id="operatia2AidOperatia2A" value="#{miscarieliminareController.selected.operatia2AidOperatia2A}" required="true" requiredMessage="#{bundle.EditMiscarieliminareRequiredMessage_operatia2AidOperatia2A}">
+                            <f:selectItems value="#{operatia2aController.itemsAvailableSelectOne}"
+                                           var="operatia2AidOperatia2AItem"
+                                           itemLabel="#{operatia2AidOperatia2AItem.denumire}"
+                                           itemValue="#{operatia2AidOperatia2AItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarieliminareController.create}" value="#{bundle.Save}" update="display,:MiscarieliminareListForm:datalist,:growl :MiscarilunaListForm" oncomplete="handleSubmit(args,'MiscarieliminareCreateDialog');" onclick="MiscarieliminareCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarieliminareCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

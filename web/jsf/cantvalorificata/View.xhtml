@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantvalorificataViewDlg" widgetVar="CantvalorificataViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCantvalorificataTitle}">
+            <h:form id="CantvalorificataViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantvalorificataController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_idCantValorificata}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.idCantValorificata}" title="#{bundle.ViewCantvalorificataTitle_idCantValorificata}"/>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_cantitate}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.cantitate}" title="#{bundle.ViewCantvalorificataTitle_cantitate}"/>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_document}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.document}" title="#{bundle.ViewCantvalorificataTitle_document}"/>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_dataDocument}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.dataDocument}" title="#{bundle.ViewCantvalorificataTitle_dataDocument}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_observatii}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.observatii}" title="#{bundle.ViewCantvalorificataTitle_observatii}"/>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_agentEc}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.agentEc}" title="#{bundle.ViewCantvalorificataTitle_agentEc}"/>
+                        <h:outputText value="#{bundle.ViewCantvalorificataLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{cantvalorificataController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewCantvalorificataTitle_miscariLunaidMiscariLuna}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CantvalorificataViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

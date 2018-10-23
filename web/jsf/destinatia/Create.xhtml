@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DestinatiaCreateDlg" widgetVar="DestinatiaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDestinatiaTitle}">
+            <h:form id="DestinatiaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{destinatiaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDestinatiaLabel_idDestinatia}" for="idDestinatia" />
+                        <p:inputText id="idDestinatia" value="#{destinatiaController.selected.idDestinatia}" title="#{bundle.CreateDestinatiaTitle_idDestinatia}" required="true" requiredMessage="#{bundle.CreateDestinatiaRequiredMessage_idDestinatia}"/>
+                        <p:outputLabel value="#{bundle.CreateDestinatiaLabel_cod}" for="cod" />
+                        <p:inputTextarea rows="4" cols="30" id="cod" value="#{destinatiaController.selected.cod}" title="#{bundle.CreateDestinatiaTitle_cod}" />
+                        <p:outputLabel value="#{bundle.CreateDestinatiaLabel_denumire}" for="denumire" />
+                        <p:inputTextarea rows="4" cols="30" id="denumire" value="#{destinatiaController.selected.denumire}" title="#{bundle.CreateDestinatiaTitle_denumire}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{destinatiaController.create}" value="#{bundle.Save}" update="display,:DestinatiaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DestinatiaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DestinatiaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

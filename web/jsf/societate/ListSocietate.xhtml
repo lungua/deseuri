@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSocietateTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <div id="div211" style="width: 30%;height: 20%; border: #FFFFFF; "> 
+
+                <h:form id="SocietateListForm">
+                    <p:panel >
+                        <p:dataTable id="datalist" value="#{societateController.itemsSocietati}" var="item"
+                                     selectionMode="single" selection="#{societateController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.idSocietate}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
+
+                            <p:ajax event="rowSelect"  listener="#{societateController.onRowSelect}" update=""/>
+                            <p:ajax event="rowUnselect" update=""/>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListSocietateTitle_numeSocietate}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numeSocietate}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+                
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
+
+
+

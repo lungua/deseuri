@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocietateViewDlg" widgetVar="SocietateViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSocietateTitle}">
+            <h:form id="SocietateViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{societateController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSocietateLabel_idSocietate}"/>
+                        <h:outputText value="#{societateController.selected.idSocietate}" title="#{bundle.ViewSocietateTitle_idSocietate}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_numeSocietate}"/>
+                        <h:outputText value="#{societateController.selected.numeSocietate}" title="#{bundle.ViewSocietateTitle_numeSocietate}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_adresa}"/>
+                        <h:outputText value="#{societateController.selected.adresa}" title="#{bundle.ViewSocietateTitle_adresa}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_telefon}"/>
+                        <h:outputText value="#{societateController.selected.telefon}" title="#{bundle.ViewSocietateTitle_telefon}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_email}"/>
+                        <h:outputText value="#{societateController.selected.email}" title="#{bundle.ViewSocietateTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_semnatura1}"/>
+                        <h:outputText value="#{societateController.selected.semnatura1}" title="#{bundle.ViewSocietateTitle_semnatura1}"/>
+                        <h:outputText value="#{bundle.ViewSocietateLabel_semnatura2}"/>
+                        <h:outputText value="#{societateController.selected.semnatura2}" title="#{bundle.ViewSocietateTitle_semnatura2}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SocietateViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

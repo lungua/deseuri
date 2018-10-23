@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMiscarigenerareTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <div style="width: 100%;height: 5%;">
+                <font size="5" color="green">Actualizare Miscari Generare dupa LUNA </font>
+            </div>
+            <div id="div211" style="width: 100%;height: 20%; border: #FFFFFF; "> 
+                <p:panelGrid id="pgid2"  columns="3" style="width: 60% ;border: #FFFFFF !important;">
+                    <p:row  id="idrow137" >
+
+                        <p:column style="width: 30% ;border: #FFFFFF !important; " >
+                            <p><b> selectati Punctul de lucru :</b></p>
+                            <h:form id="form2x">
+                                <p:selectOneMenu  value="#{punctlucruController.selectPL1}" filter="true" filterMatchMode="contains" 
+                                                  converter="punctlucruConverter" var="p0" onchange="submit()"
+                                                  valueChangeListener="#{miscarilunaController.changePunctLucru}" style="width: 250px" >
+
+                                    <f:selectItem itemLabel="selectati punct lucru" itemValue="" />
+                                    <f:selectItems value="#{punctlucruController.itemsPL}" var="player1"
+                                                   itemLabel="#{player1.numePunct}"  itemValue="#{player1}" 
+                                                   />
+                                    <p:column>
+                                        #{p0.numePunct} 
+                                    </p:column>
+                                </p:selectOneMenu>
+
+
+                            </h:form>
+                        </p:column>
+                    </p:row>
+
+
+                    <p:row  id="idrow136">
+                        <p:column style="width: 30%;border: #FFFFFF !important ;" >
+                            <p><b> selectati Clasificare :</b></p>
+                            <h:form id="form3x">
+                                <p:selectOneMenu  value="#{clasificaredinController.selectedClasif1}" filter="true" filterMatchMode="contains" 
+                                                  converter="clasificaredinConverter" var="p" onchange="submit()"
+                                                  valueChangeListener="#{miscarilunaController.changeClasificaredin}" style="width: 250px" >
+                                    <f:selectItem itemLabel="TipClasificare" itemValue="" />
+                                    <f:selectItems value="#{clasificaredinController.items}" var="player"
+                                                   itemLabel="#{player.codClasificare}" itemValue="#{player}"
+                                                   />
+                                    <p:column>
+                                        #{p.codClasificare} 
+                                    </p:column>
+                                </p:selectOneMenu>
+
+                            </h:form>
+                        </p:column>
+                    </p:row>
+
+
+
+
+
+                </p:panelGrid>
+            </div>
+
+            <div style="width: 100%;">
+                <p:panelGrid id="pgid1112"  columns="2" style="width: 100% ;border: #FFFFFF !important;">
+                    <p:row   >
+                        <h:form id="LunaListForm"  >
+                            <p:panel  >
+                                <p:dataTable id="datalist" value="#{miscarilunaController.itemsLuna}" var="item"
+                                             selectionMode="single" selection="#{lunaController.selected}"
+                                             rowKey="#{item.idLuna}"
+                                             rows="400"
+                                             editable="true"
+                                             style="font-size: 10px;"
+                                             scrollable="true"
+                                             scrollHeight="150"
+                                             scrollWidth="300"
+                                             >
+
+                                    <p:ajax event="rowSelect"  listener="#{miscarilunaController.onRowSelectLuna}" update="createButton :MiscarilunaListForm :MiscarigenerareListForm :MiscarieliminareListForm :MiscarivalorificareListForm :MiscaristocareListForm "/>
+                                    <p:ajax event="rowUnselect" update=""/>
+                                    <p:column  style="width: 50%"  sortBy="#{item.luna}" filterBy="#{item.luna}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListLunaTitle_luna}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.luna}"/>
+                                    </p:column>
+                                    <p:column  style="width: 50%"  sortBy="#{item.anulidAnul.anul}" filterBy="#{item.anulidAnul.anul}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="anul"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.anulidAnul.anul}"/>
+                                    </p:column>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{lunaController.prepareCreate}" update=":LunaCreateForm" oncomplete="PF('LunaCreateDialog').show()"/>
+                                    </f:facet>
+
+                                </p:dataTable>
+                            </p:panel>
+                        </h:form>
+                        <ui:include src="../luna/Create.xhtml"/>
+                    </p:row>
+                    <p:row>
+                        <h:form id="MiscarilunaListForm">
+                            <p:panel >
+                                <p:dataTable id="datalist" value="#{miscarilunaController.itemsMiscariLuna}" var="item"
+                                             selectionMode="single" selection="#{miscarilunaController.selected}"
+                                             paginator="true"
+                                             rowKey="#{item.idMiscariLuna}"
+                                             rows="400"
+                                             editable="true"
+                                             style="width: 100%;font-size: 10px;"
+                                             scrollable="true"
+                                             scrollHeight="150"
+                                             scrollWidth="1200"
+                                             >
+
+                                    <p:ajax event="rowSelect" listener="#{miscarilunaController.onRowSelectMiscGenLuna}"  update="createButton viewButton editButton deleteButton :MiscarigenerareListForm :MiscarieliminareListForm :MiscarivalorificareListForm :MiscaristocareListForm"/>
+                                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                                    <p:column style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Deseuri"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.deseuriPunctLucruidDeseuri.numeDeseu}-#{item.deseuriPunctLucruidDeseuri.codDeseuidCodDeseu.codDeseu}"/>
+                                    </p:column>
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="StocInitial"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.stocInceput}"/>
+                                    </p:column>
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Generare"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.miscGenerare}"/>
+                                    </p:column>
+                                    <p:column style="width: 100px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Valorificare"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.miscValorificare}"/>
+                                    </p:column>
+
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Eliminare"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.miscEliminare}"/>
+                                    </p:column>
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Stocare"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.miscStocare}"/>
+                                    </p:column>
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListMiscarilunaTitle_stocSfirsit}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.stocSfirsit}"/>
+                                    </p:column>
+
+
+                                    <p:column style="width: 120px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListMiscarilunaTitle_agentElconomic}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.agentElconomic}"/>
+                                    </p:column>
+                                    <p:column style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Luna"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.lunaidLuna.luna}.#{item.lunaidLuna.anulidAnul.anul}"/>
+                                    </p:column>
+                                    
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscarilunaController.prepareCreate}" update=":MiscarilunaCreateForm " oncomplete="PF('MiscarilunaCreateDialog').show()"/>
+                                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscarilunaViewForm" oncomplete="PF('MiscarilunaViewDialog').show()" disabled="#{empty miscarilunaController.selected}"/>
+                                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscarilunaEditForm" oncomplete="PF('MiscarilunaEditDialog').show()" disabled="#{empty miscarilunaController.selected}"/>
+                                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscarilunaController.destroy}" update=":growl,datalist" disabled="#{empty miscarilunaController.selected}"/>
+                                    </f:facet>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:form>
+
+                        <ui:include src="Create.xhtml"/>
+                        <ui:include src="Edit.xhtml"/>
+                        <ui:include src="View.xhtml"/>
+
+                    </p:row>
+
+
+                </p:panelGrid>
+            </div>
+
+            <div style="width: 100%;height: 45%;">
+
+                <p:panelGrid id="pgid22"  columns="4" style="width: 100% ;border: #FFFFFF !important;">
+
+
+                    <p:row   >
+
+                        <p:column style="width: 25% ;border: #234386 !important; " >
+                            <h:form id="MiscarigenerareListForm">
+                                <p:panel header="Generare" >
+                                    <p:dataTable id="datalist" value="#{miscarilunaController.itemsMiscGenerare}" var="item"
+                                                 selectionMode="single" selection="#{miscarigenerareController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.idMiscariGenerare}"
+                                                 rows="400"
+                                                 editable="true"
+                                                 style="font-size: 10px;"
+                                                 scrollable="true"
+                                                 scrollHeight="150"
+                                                 scrollWidth="340" 
+                                                 >
+
+                                        <p:ajax event="rowSelect"  listener="#{miscarigenerareController.onRowSelectGenerate}" update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarigenerareTitle_cantitate}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.cantitate}"/>
+                                        </p:column>
+
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarigenerareTitle_tipDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tipDoc}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarigenerareTitle_dataDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dataDoc}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscarigenerareController.prepareCreate}" update=":MiscarigenerareCreateForm :MiscarilunaListForm :MiscarigenerareListForm" oncomplete="PF('MiscarigenerareCreateDialog').show()"/>
+                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscarigenerareViewForm" oncomplete="PF('MiscarigenerareViewDialog').show()" disabled="#{empty miscarigenerareController.selected}"/>
+                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}"  update=":MiscarigenerareCreateForm :MiscarilunaListForm :MiscarigenerareListForm" oncomplete="PF('MiscarigenerareEditDialog').show()" disabled="#{empty miscarigenerareController.selectMiscGen}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscarigenerareController.destroy}" update=":growl,datalist  :MiscarilunaListForm :MiscarigenerareListForm" disabled="#{empty miscarigenerareController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+
+                            <ui:include src="../miscarigenerare/Create.xhtml"/>
+                            <ui:include src="../miscarigenerare/Edit.xhtml"/>
+                            <ui:include src="../miscarigenerare/View.xhtml"/>
+
+                        </p:column>
+                    </p:row>
+
+
+
+                    <p:row  id="idrow236">
+                        <p:column style="width: 25%;border: #FFFFFF !important ;" >
+                            <h:form id="MiscarieliminareListForm">
+                                <p:panel header="Eliminare">
+                                    <p:dataTable id="datalist" value="#{miscarilunaController.itemsMiscEliminare}" var="item"
+                                                 selectionMode="single" selection="#{miscarieliminareController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.idMiscariEliminare}"
+                                                 rows="400"
+                                                 editable="true"
+                                                 style="font-size: 10px;"
+                                                 scrollable="true"
+                                                 scrollHeight="150"
+                                                 scrollWidth="340"
+                                                 >
+
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarieliminareTitle_cantitatea}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.cantitatea}"/>
+                                        </p:column>
+                                        <p:column style="width: 200px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Anexa2A"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.operatia2AidOperatia2A.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarieliminareTitle_tipDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tipDoc}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarieliminareTitle_dataDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dataDoc}">
+                                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarieliminareTitle_miscariLunaidMiscariLuna}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.miscariLunaidMiscariLuna}"/>
+                                        </p:column>
+                                        
+                                        <f:facet name="footer">
+                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscarieliminareController.prepareCreate}" update=":MiscarieliminareCreateForm :MiscarilunaListForm :MiscarieliminareListForm" oncomplete="PF('MiscarieliminareCreateDialog').show()"/>
+                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscarieliminareViewForm" oncomplete="PF('MiscarieliminareViewDialog').show()" disabled="#{empty miscarieliminareController.selected}"/>
+                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscarieliminareEditForm" oncomplete="PF('MiscarieliminareEditDialog').show()" disabled="#{empty miscarieliminareController.selected}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscarieliminareController.destroy}" update=":growl,datalist" disabled="#{empty miscarieliminareController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+
+                            <ui:include src="../miscarieliminare/Create.xhtml"/>
+                            <ui:include src="../miscarieliminare/Edit.xhtml"/>
+                            <ui:include src="../miscarieliminare/View.xhtml"/>
+
+                        </p:column>
+                    </p:row>
+                    <p:row  >
+                        <p:column style="width: 25%;border: #FFFFFF !important ;" >
+                            <h:form id="MiscarivalorificareListForm">
+                                <p:panel header="Valorificare">
+                                    <p:dataTable id="datalist" value="#{miscarilunaController.itemsMiscValorificare}" var="item"
+                                                 selectionMode="single" selection="#{miscarivalorificareController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.idMiscariValorificare}"
+                                                 rows="400"
+                                                 editable="true"
+                                                 style="font-size: 10px;"
+                                                 scrollable="true"
+                                                 scrollHeight="150"
+                                                 scrollWidth="340"
+                                                 >
+
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarivalorificareTitle_cantitate}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.cantitate}"/>
+                                        </p:column>
+                                        <p:column style="width: 200px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Anexa2B"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.anexa2BidAnexa2B.denumirea}"/>
+                                        </p:column>
+                                        <p:column style="width: 120px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="AgentEconomic}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.adentEc}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarivalorificareTitle_tipDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tipDoc}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscarivalorificareTitle_dataDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dataDoc}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Deseu"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.miscariLunaidMiscariLuna.deseuriPunctLucruidDeseuri.numeDeseu}"/>
+                                        </p:column>
+                                        
+                                        <f:facet name="footer">
+                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscarivalorificareController.prepareCreate}" update=":MiscarivalorificareCreateForm :MiscarilunaListForm :MiscarivalorificareListForm" oncomplete="PF('MiscarivalorificareCreateDialog').show()"/>
+                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscarivalorificareViewForm" oncomplete="PF('MiscarivalorificareViewDialog').show()" disabled="#{empty miscarivalorificareController.selected}"/>
+                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscarivalorificareEditForm" oncomplete="PF('MiscarivalorificareEditDialog').show()" disabled="#{empty miscarivalorificareController.selected}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscarivalorificareController.destroy}" update=":growl,datalist" disabled="#{empty miscarivalorificareController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+
+                            <ui:include src="../miscarivalorificare/Create.xhtml"/>
+                            <ui:include src="../miscarivalorificare/Edit.xhtml"/>
+                            <ui:include src="../miscarivalorificare/View.xhtml"/>
+
+                        </p:column>
+                    </p:row>
+                    <p:row  >
+                        <p:column style="width: 25%;border: #FFFFFF !important ;" >
+                            <h:form id="MiscaristocareListForm">
+                                <p:panel header="Stocare">
+                                    <p:dataTable id="datalist" value="#{miscarilunaController.itemsMiscStocare}" var="item"
+                                                 selectionMode="single" selection="#{miscaristocareController.selected}"
+                                                 paginator="true"
+                                                 rowKey="#{item.idMiscariStocare}"
+                                                 rows="400"
+                                                 editable="true"
+                                                 style="font-size: 10px;"
+                                                 scrollable="true"
+                                                 scrollHeight="150"
+                                                 scrollWidth="340"
+                                                 >
+
+                                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                                        
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_cantitate}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.cantitate}"/>
+                                        </p:column>
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_miscariLunaidMiscariLuna}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.miscariLunaidMiscariLuna.deseuriPunctLucruidDeseuri.numeDeseu}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_tipDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tipDoc}"/>
+                                        </p:column>
+                                        
+                                        
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_destinatiaidDestinatia}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.destinatiaidDestinatia.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 150px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_mijlocTransportidMijlocTransport}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.mijlocTransportidMijlocTransport.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 200px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_scopulTratariiidScopulTratarii}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.scopulTratariiidScopulTratarii.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_modTratareidModTratare}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.modTratareidModTratare.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 180px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_tipStocareidTipStocare}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.tipStocareidTipStocare.denumire}"/>
+                                        </p:column>
+                                        <p:column style="width: 80px;">
+                                            <f:facet name="header">
+                                                <h:outputText value="#{bundle.ListMiscaristocareTitle_dataDoc}"/>
+                                            </f:facet>
+                                            <h:outputText value="#{item.dataDoc}">
+                                                <f:convertDateTime pattern="dd.MM.yyyy" />
+                                            </h:outputText>
+                                        </p:column>
+                                        <f:facet name="footer">
+                                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{miscaristocareController.prepareCreate}" update=":MiscaristocareCreateForm :MiscarilunaListForm :MiscaristocareListForm" oncomplete="PF('MiscaristocareCreateDialog').show()"/>
+                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MiscaristocareViewForm" oncomplete="PF('MiscaristocareViewDialog').show()" disabled="#{empty miscaristocareController.selected}"/>
+                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MiscaristocareEditForm" oncomplete="PF('MiscaristocareEditDialog').show()" disabled="#{empty miscaristocareController.selected}"/>
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{miscaristocareController.destroy}" update=":growl,datalist" disabled="#{empty miscaristocareController.selected}"/>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </p:panel>
+                            </h:form>
+
+                            <ui:include src="../miscaristocare/Create.xhtml"/>
+                            <ui:include src="../miscaristocare/Edit.xhtml"/>
+                            <ui:include src="../miscaristocare/View.xhtml"/>
+
+                        </p:column>
+                    </p:row>
+
+
+
+                </p:panelGrid>
+
+
+
+
+
+
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
+
+
+
+
+

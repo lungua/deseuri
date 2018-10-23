@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarilunaEditDlg" widgetVar="MiscarilunaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMiscarilunaTitle}">
+            <h:form id="MiscarilunaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarilunaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_idMiscariLuna}" for="idMiscariLuna" />
+                        <p:inputText id="idMiscariLuna" value="#{miscarilunaController.selected.idMiscariLuna}" title="#{bundle.EditMiscarilunaTitle_idMiscariLuna}" required="true" requiredMessage="#{bundle.EditMiscarilunaRequiredMessage_idMiscariLuna}"/>
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_stocInceput}" for="stocInceput" />
+                        <p:inputText id="stocInceput" value="#{miscarilunaController.selected.stocInceput}" title="#{bundle.EditMiscarilunaTitle_stocInceput}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_stocSfirsit}" for="stocSfirsit" />
+                        <p:inputText id="stocSfirsit" value="#{miscarilunaController.selected.stocSfirsit}" title="#{bundle.EditMiscarilunaTitle_stocSfirsit}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_cantRezultata}" for="cantRezultata" />
+                        <p:inputText id="cantRezultata" value="#{miscarilunaController.selected.cantRezultata}" title="#{bundle.EditMiscarilunaTitle_cantRezultata}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_componenteComercializate}" for="componenteComercializate" />
+                        <p:inputText id="componenteComercializate" value="#{miscarilunaController.selected.componenteComercializate}" title="#{bundle.EditMiscarilunaTitle_componenteComercializate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_cantReciclate}" for="cantReciclate" />
+                        <p:inputText id="cantReciclate" value="#{miscarilunaController.selected.cantReciclate}" title="#{bundle.EditMiscarilunaTitle_cantReciclate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_cantValorificate}" for="cantValorificate" />
+                        <p:inputText id="cantValorificate" value="#{miscarilunaController.selected.cantValorificate}" title="#{bundle.EditMiscarilunaTitle_cantValorificate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_cantEliminate}" for="cantEliminate" />
+                        <p:inputText id="cantEliminate" value="#{miscarilunaController.selected.cantEliminate}" title="#{bundle.EditMiscarilunaTitle_cantEliminate}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_agentElconomic}" for="agentElconomic" />
+                        <p:inputTextarea rows="4" cols="30" id="agentElconomic" value="#{miscarilunaController.selected.agentElconomic}" title="#{bundle.EditMiscarilunaTitle_agentElconomic}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_vsuNr}" for="vsuNr" />
+                        <p:inputText id="vsuNr" value="#{miscarilunaController.selected.vsuNr}" title="#{bundle.EditMiscarilunaTitle_vsuNr}" />
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_lunaidLuna}" for="lunaidLuna" />
+                        <p:selectOneMenu id="lunaidLuna" value="#{miscarilunaController.selected.lunaidLuna}" required="true" requiredMessage="#{bundle.EditMiscarilunaRequiredMessage_lunaidLuna}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{lunaController.itemsAvailableSelectOne}"
+                                           var="lunaidLunaItem"
+                                           itemValue="#{lunaidLunaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMiscarilunaLabel_deseuriPunctLucruidDeseuri}" for="deseuriPunctLucruidDeseuri" />
+                        <p:selectOneMenu id="deseuriPunctLucruidDeseuri" value="#{miscarilunaController.selected.deseuriPunctLucruidDeseuri}" required="true" requiredMessage="#{bundle.EditMiscarilunaRequiredMessage_deseuriPunctLucruidDeseuri}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{deseuripunctlucruController.itemsAvailableSelectOne}"
+                                           var="deseuriPunctLucruidDeseuriItem"
+                                           itemValue="#{deseuriPunctLucruidDeseuriItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarilunaController.update}" value="#{bundle.Save}" update="display,:MiscarilunaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MiscarilunaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarilunaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

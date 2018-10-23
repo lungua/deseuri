@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VsuCreateDlg" widgetVar="VsuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVsuTitle}">
+            <h:form id="VsuCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vsuController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_idVSU}" for="idVSU" />
+                        <p:inputText id="idVSU" value="#{vsuController.selected.idVSU}" title="#{bundle.CreateVsuTitle_idVSU}" required="true" requiredMessage="#{bundle.CreateVsuRequiredMessage_idVSU}"/>
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_VSUColectate}" for="VSUColectate" />
+                        <p:inputText id="VSUColectate" value="#{vsuController.selected.VSUColectate}" title="#{bundle.CreateVsuTitle_VSUColectate}" />
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_VSURabla}" for="VSURabla" />
+                        <p:inputText id="VSURabla" value="#{vsuController.selected.VSURabla}" title="#{bundle.CreateVsuTitle_VSURabla}" />
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_VSUNonRabla}" for="VSUNonRabla" />
+                        <p:inputText id="VSUNonRabla" value="#{vsuController.selected.VSUNonRabla}" title="#{bundle.CreateVsuTitle_VSUNonRabla}" />
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_lunaidLuna}" for="lunaidLuna" />
+                        <p:selectOneMenu id="lunaidLuna" value="#{vsuController.selected.lunaidLuna}" required="true" requiredMessage="#{bundle.EditVsuRequiredMessage_lunaidLuna}">
+                            <f:selectItems value="#{lunaController.itemsAvailableSelectOne}"
+                                           var="lunaidLunaItem"
+                                           itemValue="#{lunaidLunaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateVsuLabel_punctLucruidPunctLucru}" for="punctLucruidPunctLucru" />
+                        <p:selectOneMenu id="punctLucruidPunctLucru" value="#{vsuController.selected.punctLucruidPunctLucru}" required="true" requiredMessage="#{bundle.EditVsuRequiredMessage_punctLucruidPunctLucru}">
+                            <f:selectItems value="#{punctlucruController.itemsAvailableSelectOne}"
+                                           var="punctLucruidPunctLucruItem"
+                                           itemValue="#{punctLucruidPunctLucruItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vsuController.create}" value="#{bundle.Save}" update="display,:VsuListForm:datalist,:growl" oncomplete="handleSubmit(args,'VsuCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VsuCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

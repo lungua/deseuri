@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarieliminareViewDlg" widgetVar="MiscarieliminareViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMiscarieliminareTitle}">
+            <h:form id="MiscarieliminareViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarieliminareController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_idMiscariEliminare}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.idMiscariEliminare}" title="#{bundle.ViewMiscarieliminareTitle_idMiscariEliminare}"/>
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_cantitatea}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.cantitatea}" title="#{bundle.ViewMiscarieliminareTitle_cantitatea}"/>
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_tipDoc}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.tipDoc}" title="#{bundle.ViewMiscarieliminareTitle_tipDoc}"/>
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_dataDoc}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.dataDoc}" title="#{bundle.ViewMiscarieliminareTitle_dataDoc}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewMiscarieliminareTitle_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{bundle.ViewMiscarieliminareLabel_operatia2AidOperatia2A}"/>
+                        <h:outputText value="#{miscarieliminareController.selected.operatia2AidOperatia2A}" title="#{bundle.ViewMiscarieliminareTitle_operatia2AidOperatia2A}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MiscarieliminareViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

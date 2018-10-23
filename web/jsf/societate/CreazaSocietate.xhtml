@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SocietateCreateDlg" widgetVar="SocietateCreateDialog1" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSocietateTitle}">
+            <h:form id="SocietateCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_idSocietate}" for="idSocietate" />
+                        <p:inputText id="idSocietate" value="#{societateController.selectedSoc.idSocietate}" title="#{bundle.CreateSocietateTitle_idSocietate}" required="true" requiredMessage="#{bundle.CreateSocietateRequiredMessage_idSocietate}"/>
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_numeSocietate}" for="numeSocietate" />
+                        <p:inputTextarea rows="4" cols="30" id="numeSocietate" value="#{societateController.selectedSoc.numeSocietate}" title="#{bundle.CreateSocietateTitle_numeSocietate}" />
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_adresa}" for="adresa" />
+                        <p:inputTextarea rows="4" cols="30" id="adresa" value="#{societateController.selectedSoc.adresa}" title="#{bundle.CreateSocietateTitle_adresa}" />
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_telefon}" for="telefon" />
+                        <p:inputTextarea rows="4" cols="30" id="telefon" value="#{societateController.selectedSoc.telefon}" title="#{bundle.CreateSocietateTitle_telefon}" />
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_email}" for="email" />
+                        <p:inputTextarea rows="4" cols="30" id="email" value="#{societateController.selectedSoc.email}" title="#{bundle.CreateSocietateTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_semnatura1}" for="semnatura1" />
+                        <p:inputTextarea rows="4" cols="30" id="semnatura1" value="#{societateController.selectedSoc.semnatura1}" title="#{bundle.CreateSocietateTitle_semnatura1}" />
+                        <p:outputLabel value="#{bundle.CreateSocietateLabel_semnatura2}" for="semnatura2" />
+                        <p:inputTextarea rows="4" cols="30" id="semnatura2" value="#{societateController.selectedSoc.semnatura2}" title="#{bundle.CreateSocietateTitle_semnatura2}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{societateController.createSoc()}" value="#{bundle.Save}" update="display,:growl" oncomplete="handleSubmit(args,'SocietateCreateDialog1');" onclick="SocietateCreateDialog1.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SocietateCreateDialog1.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

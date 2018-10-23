@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscaristocareCreateDlg" widgetVar="MiscaristocareCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMiscaristocareTitle}">
+            <h:form id="MiscaristocareCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscaristocareController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMiscaristocareLabel_idMiscariStocare}" for="idMiscariStocare" />
+                        <p:inputText id="idMiscariStocare" disabled="true" value="#{miscaristocareController.selected.idMiscariStocare}" title="#{bundle.CreateMiscaristocareTitle_idMiscariStocare}" required="true" requiredMessage="#{bundle.CreateMiscaristocareRequiredMessage_idMiscariStocare}"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscaristocareLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{miscaristocareController.selected.cantitate}" title="#{bundle.CreateMiscaristocareTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.CreateMiscaristocareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscaristocareController.selected.tipDoc}" title="#{bundle.CreateMiscaristocareTitle_tipDoc}" />
+                        <p:outputLabel value="#{bundle.CreateMiscaristocareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="dd.MM.yyyy" value="#{miscaristocareController.selected.dataDoc}" title="#{bundle.EditMiscaristocareTitle_dataDoc}"  showOn="button" timeZone="EET"/>
+                        
+                        <p:outputLabel value="Destinatia" for="destinatiaidDestinatia" />
+                        <p:selectOneMenu id="destinatiaidDestinatia" value="#{miscaristocareController.selected.destinatiaidDestinatia}" required="true" requiredMessage="#{bundle.EditMiscaristocareRequiredMessage_destinatiaidDestinatia}">
+                            <f:selectItems value="#{destinatiaController.itemsAvailableSelectOne}"
+                                           var="destinatiaidDestinatiaItem"
+                                           itemLabel="#{destinatiaidDestinatiaItem.denumire}"
+                                           itemValue="#{destinatiaidDestinatiaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="MijlocTransport" for="mijlocTransportidMijlocTransport" />
+                        <p:selectOneMenu id="mijlocTransportidMijlocTransport" value="#{miscaristocareController.selected.mijlocTransportidMijlocTransport}" required="true" requiredMessage="#{bundle.EditMiscaristocareRequiredMessage_mijlocTransportidMijlocTransport}">
+                            <f:selectItems value="#{mijloctransportController.itemsAvailableSelectOne}"
+                                           var="mijlocTransportidMijlocTransportItem"
+                                           itemLabel="#{mijlocTransportidMijlocTransportItem.denumire}"
+                                           itemValue="#{mijlocTransportidMijlocTransportItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="ScopulTratarii" for="scopulTratariiidScopulTratarii" />
+                        <p:selectOneMenu id="scopulTratariiidScopulTratarii" value="#{miscaristocareController.selected.scopulTratariiidScopulTratarii}" required="true" requiredMessage="#{bundle.EditMiscaristocareRequiredMessage_scopulTratariiidScopulTratarii}">
+                            <f:selectItems value="#{scopultratariiController.itemsAvailableSelectOne}"
+                                           var="scopulTratariiidScopulTratariiItem"
+                                           itemLabel="#{scopulTratariiidScopulTratariiItem.denumire}"
+                                           itemValue="#{scopulTratariiidScopulTratariiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="ModTratare" for="modTratareidModTratare" />
+                        <p:selectOneMenu id="modTratareidModTratare" value="#{miscaristocareController.selected.modTratareidModTratare}" required="true" requiredMessage="#{bundle.EditMiscaristocareRequiredMessage_modTratareidModTratare}">
+                            <f:selectItems value="#{modtratareController.itemsAvailableSelectOne}"
+                                           var="modTratareidModTratareItem"
+                                           itemLabel="#{modTratareidModTratareItem.denumire}"
+                                           itemValue="#{modTratareidModTratareItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="TipStocare" for="tipStocareidTipStocare" />
+                        <p:selectOneMenu id="tipStocareidTipStocare" value="#{miscaristocareController.selected.tipStocareidTipStocare}" required="true" requiredMessage="#{bundle.EditMiscaristocareRequiredMessage_tipStocareidTipStocare}">
+                            <f:selectItems value="#{tipstocareController.itemsAvailableSelectOne}"
+                                           var="tipStocareidTipStocareItem"
+                                           itemLabel="#{tipStocareidTipStocareItem.denumire}"
+                                           itemValue="#{tipStocareidTipStocareItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscaristocareController.create}" value="#{bundle.Save}" update="display,:MiscaristocareListForm:datalist,:growl :MiscarilunaListForm :MiscaristocareListForm" oncomplete="handleSubmit(args,'MiscaristocareCreateDialog');" onclick="MiscaristocareCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscaristocareCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

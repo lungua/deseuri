@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CategoriideseuriCreateDlg" widgetVar="CategoriideseuriCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCategoriideseuriTitle}">
+            <h:form id="CategoriideseuriCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{categoriideseuriController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCategoriideseuriLabel_idCategoriiDeseuri}" for="idCategoriiDeseuri" />
+                        <p:inputText id="idCategoriiDeseuri" value="#{categoriideseuriController.selected.idCategoriiDeseuri}" title="#{bundle.CreateCategoriideseuriTitle_idCategoriiDeseuri}" required="true" requiredMessage="#{bundle.CreateCategoriideseuriRequiredMessage_idCategoriiDeseuri}"/>
+                        <p:outputLabel value="#{bundle.CreateCategoriideseuriLabel_numeCategorie}" for="numeCategorie" />
+                        <p:inputTextarea rows="4" cols="30" id="numeCategorie" value="#{categoriideseuriController.selected.numeCategorie}" title="#{bundle.CreateCategoriideseuriTitle_numeCategorie}" />
+                        <p:outputLabel value="#{bundle.CreateCategoriideseuriLabel_codCategorie}" for="codCategorie" />
+                        <p:inputTextarea rows="4" cols="30" id="codCategorie" value="#{categoriideseuriController.selected.codCategorie}" title="#{bundle.CreateCategoriideseuriTitle_codCategorie}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{categoriideseuriController.create}" value="#{bundle.Save}" update="display,:CategoriideseuriListForm:datalist,:growl" oncomplete="handleSubmit(args,'CategoriideseuriCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CategoriideseuriCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantreciclataCreateDlg" widgetVar="CantreciclataCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCantreciclataTitle}">
+            <h:form id="CantreciclataCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantreciclataController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_idCantReciclata}" for="idCantReciclata" />
+                        <p:inputText id="idCantReciclata" value="#{cantreciclataController.selected.idCantReciclata}" title="#{bundle.CreateCantreciclataTitle_idCantReciclata}" required="true" requiredMessage="#{bundle.CreateCantreciclataRequiredMessage_idCantReciclata}"/>
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{cantreciclataController.selected.cantitate}" title="#{bundle.CreateCantreciclataTitle_cantitate}" />
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_document}" for="document" />
+                        <p:inputTextarea rows="4" cols="30" id="document" value="#{cantreciclataController.selected.document}" title="#{bundle.CreateCantreciclataTitle_document}" />
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_dataDocument}" for="dataDocument" />
+                        <p:calendar id="dataDocument" pattern="MM/dd/yyyy" value="#{cantreciclataController.selected.dataDocument}" title="#{bundle.EditCantreciclataTitle_dataDocument}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_observatii}" for="observatii" />
+                        <p:inputTextarea rows="4" cols="30" id="observatii" value="#{cantreciclataController.selected.observatii}" title="#{bundle.CreateCantreciclataTitle_observatii}" />
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_agentEc}" for="agentEc" />
+                        <p:inputTextarea rows="4" cols="30" id="agentEc" value="#{cantreciclataController.selected.agentEc}" title="#{bundle.CreateCantreciclataTitle_agentEc}" />
+                        <p:outputLabel value="#{bundle.CreateCantreciclataLabel_miscariLunaidMiscariLuna}" for="miscariLunaidMiscariLuna" />
+                        <p:selectOneMenu id="miscariLunaidMiscariLuna" value="#{cantreciclataController.selected.miscariLunaidMiscariLuna}" required="true" requiredMessage="#{bundle.EditCantreciclataRequiredMessage_miscariLunaidMiscariLuna}">
+                            <f:selectItems value="#{miscarilunaController.itemsAvailableSelectOne}"
+                                           var="miscariLunaidMiscariLunaItem"
+                                           itemValue="#{miscariLunaidMiscariLunaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cantreciclataController.create}" value="#{bundle.Save}" update="display,:CantreciclataListForm:datalist,:growl" oncomplete="handleSubmit(args,'CantreciclataCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CantreciclataCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

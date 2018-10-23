@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CantreciclataViewDlg" widgetVar="CantreciclataViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCantreciclataTitle}">
+            <h:form id="CantreciclataViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cantreciclataController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_idCantReciclata}"/>
+                        <h:outputText value="#{cantreciclataController.selected.idCantReciclata}" title="#{bundle.ViewCantreciclataTitle_idCantReciclata}"/>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_cantitate}"/>
+                        <h:outputText value="#{cantreciclataController.selected.cantitate}" title="#{bundle.ViewCantreciclataTitle_cantitate}"/>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_document}"/>
+                        <h:outputText value="#{cantreciclataController.selected.document}" title="#{bundle.ViewCantreciclataTitle_document}"/>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_dataDocument}"/>
+                        <h:outputText value="#{cantreciclataController.selected.dataDocument}" title="#{bundle.ViewCantreciclataTitle_dataDocument}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_observatii}"/>
+                        <h:outputText value="#{cantreciclataController.selected.observatii}" title="#{bundle.ViewCantreciclataTitle_observatii}"/>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_agentEc}"/>
+                        <h:outputText value="#{cantreciclataController.selected.agentEc}" title="#{bundle.ViewCantreciclataTitle_agentEc}"/>
+                        <h:outputText value="#{bundle.ViewCantreciclataLabel_miscariLunaidMiscariLuna}"/>
+                        <h:outputText value="#{cantreciclataController.selected.miscariLunaidMiscariLuna}" title="#{bundle.ViewCantreciclataTitle_miscariLunaidMiscariLuna}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CantreciclataViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

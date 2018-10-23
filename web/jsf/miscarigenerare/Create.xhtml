@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MiscarigenerareCreateDlg" widgetVar="MiscarigenerareCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMiscarigenerareTitle}">
+            <h:form id="MiscarigenerareCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{miscarigenerareController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMiscarigenerareLabel_idMiscariGenerare}" for="idMiscariGenerare" />
+                        <p:inputText disabled="true" id="idMiscariGenerare" value="#{miscarigenerareController.selected.idMiscariGenerare}" title="#{bundle.CreateMiscarigenerareTitle_idMiscariGenerare}" required="true" requiredMessage="#{bundle.CreateMiscarigenerareRequiredMessage_idMiscariGenerare}"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarigenerareLabel_cantitate}" for="cantitate" />
+                        <p:inputText id="cantitate" value="#{miscarigenerareController.selected.cantitate}" title="#{bundle.CreateMiscarigenerareTitle_cantitate}" />
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarigenerareLabel_tipDoc}" for="tipDoc" />
+                        <p:inputTextarea rows="4" cols="30" id="tipDoc" value="#{miscarigenerareController.selected.tipDoc}" title="#{bundle.CreateMiscarigenerareTitle_tipDoc}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateMiscarigenerareLabel_dataDoc}" for="dataDoc" />
+                        <p:calendar id="dataDoc" pattern="dd.MM.yyyy" value="#{miscarigenerareController.selected.dataDoc}" title="#{bundle.EditMiscarigenerareTitle_dataDoc}"  showOn="button" timeZone="EET"/>
+                        
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{miscarigenerareController.create}" value="#{bundle.Save}" update="display,:MiscarigenerareListForm:datalist,:growl :MiscarilunaListForm :MiscarigenerareListForm" oncomplete="handleSubmit(args,'MiscarigenerareCreateDialog');" onclick="MiscarigenerareCreateDialog.hide()" />
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MiscarigenerareCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

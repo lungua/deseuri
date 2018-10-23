@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CoddeseuCreateDlg" widgetVar="CoddeseuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCoddeseuTitle}">
+            <h:form id="CoddeseuCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{coddeseuController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCoddeseuLabel_idCodDeseu}" for="idCodDeseu" />
+                        <p:inputText id="idCodDeseu" value="#{coddeseuController.selected.idCodDeseu}" title="#{bundle.CreateCoddeseuTitle_idCodDeseu}" required="true" requiredMessage="#{bundle.CreateCoddeseuRequiredMessage_idCodDeseu}"/>
+                        <p:outputLabel value="#{bundle.CreateCoddeseuLabel_codDeseu}" for="codDeseu" />
+                        <p:inputTextarea rows="4" cols="30" id="codDeseu" value="#{coddeseuController.selected.codDeseu}" title="#{bundle.CreateCoddeseuTitle_codDeseu}" />
+                        <p:outputLabel value="#{bundle.CreateCoddeseuLabel_numeCodDeseu}" for="numeCodDeseu" />
+                        <p:inputTextarea rows="4" cols="30" id="numeCodDeseu" value="#{coddeseuController.selected.numeCodDeseu}" title="#{bundle.CreateCoddeseuTitle_numeCodDeseu}" />
+                        <p:outputLabel value="#{bundle.CreateCoddeseuLabel_subcategoriiDeseuriidSubcategoriiDeseuri}" for="subcategoriiDeseuriidSubcategoriiDeseuri" />
+                        <p:selectOneMenu id="subcategoriiDeseuriidSubcategoriiDeseuri" value="#{coddeseuController.selected.subcategoriiDeseuriidSubcategoriiDeseuri}" required="true" requiredMessage="#{bundle.EditCoddeseuRequiredMessage_subcategoriiDeseuriidSubcategoriiDeseuri}">
+                            <f:selectItems value="#{subcategoriideseuriController.itemsAvailableSelectOne}"
+                                           var="subcategoriiDeseuriidSubcategoriiDeseuriItem"
+                                           itemValue="#{subcategoriiDeseuriidSubcategoriiDeseuriItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{coddeseuController.create}" value="#{bundle.Save}" update="display,:CoddeseuListForm:datalist,:growl" oncomplete="handleSubmit(args,'CoddeseuCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CoddeseuCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
