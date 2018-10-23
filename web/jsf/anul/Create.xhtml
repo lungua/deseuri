@@ -15,7 +15,7 @@
                         <p:outputLabel value="#{bundle.CreateAnulLabel_idAnul}" for="idAnul" />
                         <p:inputText id="idAnul" value="#{anulController.selected.idAnul}" title="#{bundle.CreateAnulTitle_idAnul}" required="true" requiredMessage="#{bundle.CreateAnulRequiredMessage_idAnul}"/>
                         <p:outputLabel value="#{bundle.CreateAnulLabel_anul}" for="anul" />
-                        <p:inputText id="anul" value="#{anulController.selected.anul}" title="#{bundle.CreateAnulTitle_anul}" />
+                        <p:inputText id="anul" value="#{anulController.selected.anul}" title="Anul" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{anulController.create}" value="#{bundle.Save}" update="display,:AnulListForm:datalist,:growl" oncomplete="handleSubmit(args,'AnulCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="AnulCreateDialog.hide()"/>
